@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Lazy Government Employees</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="page-wrapper">
+    <!-- Form for CRUD on Employees DB -->
+    <form id="new-employee-form" method="POST" action="#" style="display: block">
+      <label for="name">Full name</label> <input type="text" name="newName" id="newName"></br>
+      <label for="supervisor">Supervisor</label> <input type="text" name="newSupervisor" id="newSupervisor"></br>
+      <label for="position">Position</label> <input type="text" name="newPosition" id="newPosition"></br></br>
+      <input type="submit" name="create-employee" value="Create">
+    </form>
+
+    <form id="edit-employee-form" method="POST" action="#" style="display: none">
+      <label for="name">Full name</label> <input type="text" name="editName" id="editName"></br>
+      <label for="supervisor">Supervisor</label> <input type="text" name="editSupervisor" id="editSupervisor"></br>
+      <label for="position">Position</label> <input type="text" name="editPosition" id="editPosition"></br></br>
+      <input type="submit" name="create-employee" value="Update">
+    </form>
+
+    <!-- Todo Item List -->
+    <ul id="employee-list"></ul>
+  </div>
+
+  <script src="db.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
