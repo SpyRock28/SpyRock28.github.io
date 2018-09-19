@@ -2,9 +2,13 @@ let i = 1;
 let dataStoreInc = "acronyms";
 
 window.onload = () => {
-  itemDB.open("Acronyms", i++, dataStoreInc, "acronym", ["acronym", "definition"], imDone);
+  itemDB.delete("Acronyms", () => {
+    itemDB.open("Acronyms", i++, dataStoreInc, "acronym", ["acronym", "definition"], imDone);
+  });
   //console.log("opened acronyms");
-  itemDB.open("Departments", 1, "departments", "name", ["name", "building", "acronym"], imDone);
+  itemDB.delete("Departments", () => {
+    itemDB.open("Departments", 1, "departments", "name", ["name", "building", "acronym"], imDone);
+  });
   //console.log("opened departments");
 }
 
@@ -204,7 +208,14 @@ let incrementV = document.getElementById('incVers');
 
 incrementV.onsubmit = () => {
   console.log("Increment Database Version Test...");
-  itemDB.open("Acronyms", i++, "acronyms", "acronym", ["acronym", "definition"], imDone);
-  console.log("Database version: " + (i - 1));
+  itemDB.close("Acronyms", () => {
+    if (i % 2 === 0) {
+      itemDB.open("Acronyms", i++, "acronyms", "acronym", ["acronym", "definition", "genre"], imDone);
+    } else {
+      itemDB.open("Acronyms", i++, "acronyms", "acronym", ["acronym", "definition"], imDone);
+    }
+    console.log("acronyms Database version: " + (i - 1));
+  });
+
   return false;
 };

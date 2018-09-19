@@ -1,6 +1,6 @@
 var itemDB = ( function() {
   var iDB = {};
-  //let databases = [];
+  let databases = [];
   var datastores = [];
 
  /**
@@ -51,12 +51,26 @@ var itemDB = ( function() {
       datastores[datastoreName] = db;
       console.log(e.target.result);
 
+      databases[databaseName] = request.result;
+
       // Execute the callback.
       callback("open");
     };
 
     // Handle errors when opening the datastore.
     request.onerror = iDB.onerror;
+  };
+
+  iDB.close = (databaseName, callback) => {
+    databases[databaseName].close();
+
+    callback('Database closed');
+  };
+
+  iDB.delete = (databaseName, callback) => {
+    indexedDB.deleteDatabase(databaseName);
+
+    callback();
   };
 
  /**
