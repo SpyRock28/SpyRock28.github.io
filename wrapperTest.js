@@ -1,5 +1,8 @@
+let i = 1;
+let dataStoreInc = "acronyms";
+
 window.onload = () => {
-  itemDB.open("Acronyms", 1, "acronyms", "acronym", ["acronym", "definition"], imDone);
+  itemDB.open("Acronyms", i++, dataStoreInc, "acronym", ["acronym", "definition"], imDone);
   //console.log("opened acronyms");
   itemDB.open("Departments", 1, "departments", "name", ["name", "building", "acronym"], imDone);
   //console.log("opened departments");
@@ -36,9 +39,9 @@ let acrnmTestFindAll = document.getElementById('acronymForm5');
 acrnmTestCreate.onsubmit = () => {
   //create a few acronym items.
   console.log("1st test.");
-  itemDB.createItem("acronyms", acrnm1, imDone);
-  itemDB.createItem("acronyms", acrnm2, imDone);
-  itemDB.createItem("acronyms", acrnm3, imDone);
+  itemDB.createItem(dataStoreInc, acrnm1, imDone);
+  itemDB.createItem(dataStoreInc, acrnm2, imDone);
+  itemDB.createItem(dataStoreInc, acrnm3, imDone);
 
   return false;
 }
@@ -47,28 +50,28 @@ acrnmTestUpdate.onsubmit = () => {
   //update an acronym item.
   console.log("2nd test.");
   acrnm3.definition = "League of Legends"
-  itemDB.updateItem("acronyms", acrnm3.acronym, acrnm3, "acronym", imDone);
+  itemDB.updateItem(dataStoreInc, "acronym", acrnm3.acronym, acrnm3, imDone);
 
   return false;
 };
 
 acrnmTestFind.onsubmit = () => {
   console.log("3rd test.");
-  itemDB.find('acronyms', "definition", "Lord of the Rings", jsonDone);
+  itemDB.find(dataStoreInc, "definition", "Lord of the Rings", jsonDone);
 
   return false;
 };
 
 acrnmTestDelete.onsubmit = () => {
   console.log("4th test.");
-  itemDB.deleteItem("acronyms", "GOT", imDone);
+  itemDB.deleteItem(dataStoreInc, "GOT", imDone);
 
   return false;
 };
 
 acrnmTestFindAll.onsubmit = () => {
   console.log("5th test.");
-  itemDB.fetchAll("acronyms", jsonDone);
+  itemDB.fetchAll(dataStoreInc, jsonDone);
 
   return false;
 };
@@ -118,8 +121,8 @@ dptTestUpdate.onsubmit = () => {
   console.log("Department Update Test...");
   dept1.acronym = "SMXG";
   dept2.building = 850;
-  itemDB.updateItem('departments', dept1.name, dept1, "name", imDone);
-  itemDB.updateItem('departments', dept2.name, dept2, "name", imDone);
+  itemDB.updateItem('departments', "name", dept1.name, dept1, imDone);
+  itemDB.updateItem('departments', "name", dept2.name, dept2, imDone);
 
   return false;
 };
@@ -156,7 +159,7 @@ let dept4 = {
 
 combineCreate.onsubmit = () => {
   console.log("Concurrent Creation test...");
-  itemDB.createItem('acronyms', acrnm4, imDone);
+  itemDB.createItem(dataStoreInc, acrnm4, imDone);
   itemDB.createItem('departments', dept4, imDone);
 
   return false;
@@ -164,7 +167,7 @@ combineCreate.onsubmit = () => {
 
 combineFind.onsubmit = () => {
   console.log("Concurrent find test...");
-  itemDB.find('acronyms', "definition", "The Matrix", jsonDone);
+  itemDB.find(dataStoreInc, "definition", "The Matrix", jsonDone);
   itemDB.find('departments', 'acronym', "MXSG", jsonDone);
   return false;
 }
@@ -174,16 +177,16 @@ combineUpdate.onsubmit = () => {
   dept4.building = 550;
   acrnm4.definition = "The Mummy"
 
-  itemDB.updateItem('departments', dept4.name, dept4, "name", imDone);
-  itemDB.updateItem('acronyms', acrnm4.acronym, acrnm4, "acronym", imDone);
-  
+  itemDB.updateItem('departments', "name", dept4.name, dept4, imDone);
+  itemDB.updateItem(dataStoreInc, "acronym", acrnm4.acronym, acrnm4, imDone);
+
   return false;
 }
 
 combineDelete.onsubmit = () => {
   console.log("Concurrent Delete test...");
   itemDB.deleteItem('departments', "Software Maintenance Group", imDone);
-  itemDB.deleteItem("acronyms", "LOTR", imDone);
+  itemDB.deleteItem(dataStoreInc, "LOTR", imDone);
 
   return false;
 }
@@ -191,7 +194,17 @@ combineDelete.onsubmit = () => {
 combineFetchAll.onsubmit = () => {
   console.log("Concurrent Fetch All test...");
   itemDB.fetchAll('departments', jsonDone);
-  itemDB.fetchAll("acronyms", jsonDone);
+  itemDB.fetchAll(dataStoreInc, jsonDone);
 
   return false;
 }
+
+//TEST the version incrementation of itemDB.open();
+let incrementV = document.getElementById('incVers');
+
+incrementV.onsubmit = () => {
+  console.log("Increment Database Version Test...");
+  itemDB.open("Acronyms", i++, "acronyms", "acronym", ["acronym", "definition"], imDone);
+  console.log("Database version: " + (i - 1));
+  return false;
+};

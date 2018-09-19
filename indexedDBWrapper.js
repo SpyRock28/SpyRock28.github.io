@@ -14,6 +14,7 @@ var itemDB = ( function() {
  */
   iDB.open = function(databaseName, version, datastoreName, key_path, indices, callback) {
     // Open a connection to the datastore.
+    console.log("version: " + version);
     var request = indexedDB.open(databaseName, version);
 
     // Handle datastore upgrades.
@@ -21,6 +22,8 @@ var itemDB = ( function() {
       var db = e.target.result;
 
       e.target.transaction.onerror = iDB.onerror;
+      //save local data for repopulation.
+      //
 
       // Delete the old datastore.
       if (db.objectStoreNames.contains(datastoreName)) {
@@ -32,10 +35,12 @@ var itemDB = ( function() {
         keyPath: key_path
       });
 
-      console.log();
+      console.log("In onupgradeneeded...");
       indices.forEach( (prop) => {
         store.createIndex(prop, prop, { unique: false});
       });
+
+      //repopulate
     };
 
     // Handle successful datastore access.

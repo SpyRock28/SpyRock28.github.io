@@ -80,3 +80,15 @@ body {
 input[type="checkbox"] {
   margin-right: 10px;
 }
+
+textarea {
+  width: 600px;
+  height: 400px;
+  float: left;
+}
+
+.database {
+  
+  width: 250px;
+  float: left;
+}
