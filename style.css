@@ -88,7 +88,10 @@ textarea {
 }
 
 .database {
-  
+
   width: 250px;
   float: left;
 }
+
+.pr { font-family: sans-serif; font-weight: bold; }
+.prl { font-style: italic; font-weight: normal; }
