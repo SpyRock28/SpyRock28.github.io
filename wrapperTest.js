@@ -3,11 +3,11 @@ let dataStoreInc = "acronyms";
 
 window.onload = () => {
   itemDB.delete("Acronyms", () => {
-    itemDB.open("Acronyms", i++, dataStoreInc, "acronym", ["acronym", "definition"], imDone);
+    itemDB.open("Acronyms", i++, dataStoreInc, "acronym", ["acronym", "definition"], false, imDone);
   });
   //console.log("opened acronyms");
   itemDB.delete("Departments", () => {
-    itemDB.open("Departments", 1, "departments", "name", ["name", "building", "acronym"], imDone);
+    itemDB.open("Departments", 1, "departments", "name", ["name", "building", "acronym"], false, imDone);
   });
   //console.log("opened departments");
 }
@@ -61,7 +61,7 @@ acrnmTestUpdate.onsubmit = () => {
 
 acrnmTestFind.onsubmit = () => {
   console.log("3rd test.");
-  itemDB.find(dataStoreInc, "definition", "Lord of the Rings", jsonDone);
+  itemDB.fetchOne(dataStoreInc, "definition", "Lord of the Rings", jsonDone);
 
   return false;
 };
@@ -88,7 +88,7 @@ let dept1 = {
 
 let dept2 = {
   "name": "Electronics Maintenance Group",
-  "building": 1010,
+  "building": 15,
   "acronym": "EMXG"
 };
 
@@ -99,6 +99,7 @@ let dept3 = {
 };
 
 let dptTestCreate = document.getElementById('dptForm1');
+let dptTestfetchAllByQuery = document.getElementById('dptForm6');
 let dptTestFind = document.getElementById('dptForm2');
 let dptTestUpdate = document.getElementById('dptForm3');
 let dptTestDelete = document.getElementById('dptForm4');
@@ -113,10 +114,17 @@ dptTestCreate.onsubmit = () => {
   return false;
 };
 
+dptTestfetchAllByQuery.onsubmit = () => {
+  console.log("Department find all by query test...");
+  itemDB.fetchAllByQuery('departments', 'building', 15, jsonDone);
+
+  return false
+};
+
 dptTestFind.onsubmit = () => {
   console.log("Department Find Test...");
-  itemDB.find('departments', 'building', 1010, jsonDone);
-  itemDB.find('departments', 'acronym', 'AMXG', jsonDone);
+  itemDB.fetchOne('departments', 'building', 400, jsonDone);
+  itemDB.fetchOne('departments', 'acronym', 'AMXG', jsonDone);
 
   return false;
 };
@@ -124,9 +132,9 @@ dptTestFind.onsubmit = () => {
 dptTestUpdate.onsubmit = () => {
   console.log("Department Update Test...");
   dept1.acronym = "SMXG";
-  dept2.building = 850;
+  dept3.building = 850;
   itemDB.updateItem('departments', "name", dept1.name, dept1, imDone);
-  itemDB.updateItem('departments', "name", dept2.name, dept2, imDone);
+  itemDB.updateItem('departments', "name", dept3.name, dept3, imDone);
 
   return false;
 };

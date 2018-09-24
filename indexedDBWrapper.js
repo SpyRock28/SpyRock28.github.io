@@ -12,7 +12,7 @@ var itemDB = ( function() {
  * indices - a string array of properties the datastore will contain.
  * callback - function to call once the database has been opened.
  */
-  iDB.open = function(databaseName, version, datastoreName, key_path, indices, callback) {
+  iDB.open = function(databaseName, version, datastoreName, key_path, indices, useAutoIncrement,callback) {
     // Open a connection to the datastore.
     console.log("version: " + version);
     var request = indexedDB.open(databaseName, version);
@@ -31,9 +31,17 @@ var itemDB = ( function() {
       }
 
       // Create a new datastore.
-      var store = db.createObjectStore(datastoreName, {
-        keyPath: key_path
-      });
+      if(useAutoIncrement){
+        var store = db.createObjectStore(datastoreName, {
+          keyPath: "id",
+          autoIncrement: true
+        });
+      }
+      else{
+        var store = db.createObjectStore(datastoreName, {
+          keyPath: key_path
+        });
+      }
 
       console.log("In onupgradeneeded...");
       indices.forEach( (prop) => {
@@ -73,12 +81,31 @@ var itemDB = ( function() {
     callback();
   };
 
+/**
+*
+*/
+  iDB.fetchAllByQuery = (datastoreName, property, value, callback) => {
+      let db = datastores[datastoreName];
+      let transaction = db.transaction([datastoreName], 'readwrite');
+      let objStore = transaction.objectStore(datastoreName);
+
+      let request = objStore.index(property).getAll(value);
+
+      transaction.oncomplete = function(e) {
+      callback(request.result);
+    };
+    transaction.onsuccess = function(e) {
+      console.log('Request successful...');
+    };
+    request.onerror = iDB.onerror;
+  };
+
  /**
  * Find all records that match the index value.
  * Parameters:
  *
  */
-iDB.find = function(datastoreName, property, value, callback) {
+iDB.fetchOne = function(datastoreName, property, value, callback) {
   let db = datastores[datastoreName];
   let transaction = db.transaction([datastoreName], 'readwrite');
   let objStore = transaction.objectStore(datastoreName);
