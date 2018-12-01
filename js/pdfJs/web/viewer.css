@@ -1362,7 +1362,7 @@ html[dir="rtl"] #viewOutline.toolbarButton::before {
 }
 
 #closeButton.toolbarButton::before {
-  content: url(images/findbarButton-previous.png);
+  content: url(images/findbarButton-previous-rtl@2x.png);
 }
 
 .toolbarButton.pdfSidebarNotification::after {
