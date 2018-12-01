@@ -1361,8 +1361,32 @@ html[dir="rtl"] #viewOutline.toolbarButton::before {
   content: url(images/toolbarButton-search.png);
 }
 
-#closeButton.toolbarButton::before {
-  content: url(images/findbarButton-next-rtl@2x.png);
+/* #closeButton.toolbarButton::before {
+  content: url(images/findbarButton-previous.png);
+  border: 1px solid blue;
+} */
+
+@media all and (max-width: 766px){
+  #closeButton{
+    border:1px solid blue;
+    background: url(images/findbarButton-previous@2x.png) no-repeat;
+  }
+  /* #closeButton.toolbarButton::before {
+    content: url(images/findbarButton-previous.png);
+    border: 1px solid blue;
+  } */
+}
+
+@media all and (min-width: 767px){
+  /* #closeButton.toobarButton::before {
+    content: url(images/findbarButton-previous@2x.png);
+    border: 1px solid red;
+
+  } */
+  #closeButton{
+    border:1px solid red;
+    background: url(images/findbarButton-previous.png) no-repeat;
+  }
 }
 
 .toolbarButton.pdfSidebarNotification::after {
