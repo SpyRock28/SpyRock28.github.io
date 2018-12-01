@@ -714,7 +714,7 @@ html[dir='rtl'] #toolbarContainer, .findbar, .secondaryToolbar {
 }
 
 #toolbarViewer {
-  height: 32px;
+  height: 48px;
 }
 
 #loadingBar {
@@ -1238,6 +1238,7 @@ html[dir='rtl'] #findNext {
 .secondaryToolbarButton::before {
   /* All matching images have a size of 16x16
    * All relevant containers have a size of 32x25 */
+  border:;
   position: absolute;
   display: inline-block;
   top: 4px;
@@ -1361,9 +1362,32 @@ html[dir="rtl"] #viewOutline.toolbarButton::before {
   content: url(images/toolbarButton-search.png);
 }
 
-#closeButton.toolbarButton::before {
+/* #closeButton.toolbarButton::before {
   content: url(images/findbarButton-previous.png);
-  border: 1px yellow solid;
+  border: 1px solid blue;
+} */
+
+@media all and (max-width: 766px){
+  #closeButton{
+    border:1px solid blue;
+    background: url(images/findbarButton-previous@2x.png) no-repeat;
+  }
+  /* #closeButton.toolbarButton::before {
+    content: url(images/findbarButton-previous.png);
+    border: 1px solid blue;
+  } */
+}
+
+@media all and (min-width: 767px){
+  /* #closeButton.toobarButton::before {
+    content: url(images/findbarButton-previous@2x.png);
+    border: 1px solid red;
+
+  } */
+  #closeButton{
+    border:1px solid red;
+    background: url(images/findbarButton-previous.png) no-repeat;
+  }
 }
 
 .toolbarButton.pdfSidebarNotification::after {
