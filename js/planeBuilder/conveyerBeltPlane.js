@@ -2,7 +2,7 @@ function ConveyerBelt(sketch, inPosX)
 {
 
   this.posX = inPosX;
-  this.posY = sketch.height/2 + sketch.height/5;
+  this.posY = sketch.height/2;
 
   this.shrinkFactor = 2;
 

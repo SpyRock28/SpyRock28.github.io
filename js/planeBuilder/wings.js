@@ -1,4 +1,4 @@
-function Wings(sketch, posX, posY)
+function Wings(sketch, posX, posY, wingsImg)
 {
   this.drag = false;
   this.xPos = posX;
@@ -6,8 +6,8 @@ function Wings(sketch, posX, posY)
   
   this.update = function()
   {
-    sketch.ellipse(this.xPos, this.yPos, 50, 50);
-    sketch.text("wings", this.xPos-20, this.yPos);
+    sketch.image(wingsImg, this.xPos - 15, this.yPos - 20, 50, 50);
+    sketch.text("Wings", this.xPos, this.yPos - 30);
   }
   
   this.touchStarted = function(wingXpos, wingYpos)
@@ -29,7 +29,7 @@ function Wings(sketch, posX, posY)
     {
       for(let i = 0; i < fuselageList.length; i++)
       {
-        if(sketch.dist(sketch.mouseX, sketch.mouseY, fuselageList[i].posX, fuselageList[i].posY) < 50)
+        if(sketch.dist(sketch.mouseX, sketch.mouseY, fuselageList[i].posX + 25, fuselageList[i].posY + 25) < 100)
         {
           if(fuselageList[i].hasWings == false)
           {

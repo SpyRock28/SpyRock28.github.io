@@ -4,13 +4,24 @@ var planeBuilderSim = function(sketch) {
   {
     event.preventDefault();
   }*/
+  var fuselageImg;
+  var tailImg;
+  var wingsImg;
+  var cockpitImg;
+  var fuselageCImg;
+  var fuselageTImg;
+  var fuselageWImg;
+  var fuselageCTImg;
+  var fuselageCWImg;
+  var fuselageWTImg;
+  var airplaneCompImg;
   
   var wings;
   var tail;
   var cockpit;
   var converyerBelt;
   var fuselage;
-  var velocity = 1;
+  var velocity = 2;
   this.fuselageList = [];
   
   this.bgImg = sketch.loadImage("images/game/conveyerImgs/gameBackground.png");
@@ -31,11 +42,11 @@ var planeBuilderSim = function(sketch) {
     
     
     let defaultToolsLocationX = sketch.width/2;
-    let defaultToolsLocationY = sketch.height/3;
+    let defaultToolsLocationY = sketch.height - sketch.height/4;
     
-    wings = new Wings(sketch, defaultToolsLocationX, defaultToolsLocationY);
-    tail = new Tail(sketch, defaultToolsLocationX - 100, defaultToolsLocationY);
-    cockpit = new Cockpit(sketch, defaultToolsLocationX + 100, defaultToolsLocationY);
+    wings = new Wings(sketch, defaultToolsLocationX, defaultToolsLocationY, wingsImg);
+    tail = new Tail(sketch, defaultToolsLocationX - 100, defaultToolsLocationY, tailImg);
+    cockpit = new Cockpit(sketch, defaultToolsLocationX + 100, defaultToolsLocationY, cockpitImg );
     conveyerBelt = new ConveyerBelt(sketch, 50);
     
     
@@ -87,12 +98,25 @@ var planeBuilderSim = function(sketch) {
   
   function addFuselage()
   {
-    this.fuselageList.push(new Fuselage(sketch));
+    this.fuselageList.push(new Fuselage(sketch, fuselageImg, 
+      airplaneCompImg, cockpitImg, fuselageCImg, fuselageTImg, 
+      fuselageWImg, fuselageCTImg, fuselageCWImg, fuselageWTImg, wingsImg));
 
     crateTimeout = setTimeout(addFuselage, 3000);
   }
   
   function loadImages()
   {
+    fuselageImg = sketch.loadImage("images/game/planeBuilder/fuselage.png");
+    tailImg = sketch.loadImage("images/game/planeBuilder/tail.png");
+    wingsImg = sketch.loadImage("images/game/planeBuilder/wings.png");
+    cockpitImg = sketch.loadImage("images/game/planeBuilder/cockpit.png");
+    fuselageCImg = sketch.loadImage("images/game/planeBuilder/fuselageC.png");
+    fuselageTImg = sketch.loadImage("images/game/planeBuilder/fuselageT.png");
+    fuselageWImg = sketch.loadImage("images/game/planeBuilder/fuselageW.png");
+    fuselageCTImg = sketch.loadImage("images/game/planeBuilder/fuselageCT.png");
+    fuselageCWImg = sketch.loadImage("images/game/planeBuilder/fuselageCW.png");
+    fuselageWTImg = sketch.loadImage("images/game/planeBuilder/fuselageWT.png");
+    airplaneCompImg = sketch.loadImage("images/game/planeBuilder/airplaneComp.png");
   }
 }

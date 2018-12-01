@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/aop.css"  media="screen,projection"/>
+  <link href="https://fonts.googleapis.com/css?family=Armata|Montserrat" rel="stylesheet">
+  <!--Let browser know website is optimized for mobile-->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <style>
+    background-image: url("images/game/conveyerImgs/gameBackground.png");
+  </style>
+</head>
+  <body>
+    <script src="js/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="js/p5.js"></script>
+    <script language="javascript" type="text/javascript" src="js/traffic/sketch.js"></script>
+    <script language="javascript" type="text/javascript" src="js/traffic/car.js"></script>
+    <script>
+    $(function(){
+      $("#app_cont").empty();
+      traffic_S = new p5(trafficSim,'app_cont');
+    });
+    </script>
+  </body>
+</html>

@@ -1,4 +1,4 @@
-function Tail(sketch, posX, posY)
+function Tail(sketch, posX, posY, tailImg)
 {
   this.drag = false;
   this.xPos = posX;
@@ -6,8 +6,8 @@ function Tail(sketch, posX, posY)
   
   this.update = function()
   {
-    sketch.ellipse(this.xPos, this.yPos, 50, 50);
-    sketch.text("tail", this.xPos-20, this.yPos);
+    sketch.image(tailImg, this.xPos - 25, this.yPos - 20, 50, 50);
+    sketch.text("Tail", this.xPos, this.yPos - 30);
   }
   
   this.touchStarted = function(tailXpos, tailYpos)
@@ -29,11 +29,10 @@ function Tail(sketch, posX, posY)
     {
       for(let i = 0; i < fuselageList.length; i++)
       {
-        if(sketch.dist(sketch.mouseX, sketch.mouseY, fuselageList[i].posX, fuselageList[i].posY) < 50)
+        if(sketch.dist(sketch.mouseX, sketch.mouseY, fuselageList[i].posX + 25, fuselageList[i].posY + 25) < 50)
         {
           if(fuselageList[i].hasTail == false)
           {
-            fuselageList[i].fuselageText = fuselageList[i].fuselageText + "\nTail";
             fuselageList[i].hasTail = true;
           }
         }

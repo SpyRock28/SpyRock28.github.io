@@ -1,4 +1,4 @@
-function Cockpit(sketch, posX, posY)
+function Cockpit(sketch, posX, posY, cockpitImg)
 {
   this.drag = false;
   this.xPos = posX;
@@ -6,8 +6,8 @@ function Cockpit(sketch, posX, posY)
   
   this.update = function()
   {
-    sketch.ellipse(this.xPos, this.yPos, 50, 50);
-    sketch.text("Cockpit", this.xPos-22, this.yPos);
+    sketch.image(cockpitImg, this.xPos - 10, this.yPos - 20, 75, 25);
+    sketch.text("Cockpit", this.xPos, this.yPos - 30);
   }
   
   this.touchStarted = function(cockpitXpos, cockpitYpos)
@@ -28,7 +28,7 @@ function Cockpit(sketch, posX, posY)
     {
       for(let i = 0; i < fuselageList.length; i++)
       {
-        if(sketch.dist(sketch.mouseX, sketch.mouseY, fuselageList[i].posX, fuselageList[i].posY) < 50)
+        if(sketch.dist(sketch.mouseX, sketch.mouseY, fuselageList[i].posX + 25, fuselageList[i].posY + 25) < 50)
         {
           if(fuselageList[i].hasCockpit == false)
           {

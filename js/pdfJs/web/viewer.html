@@ -23,13 +23,16 @@ See https://github.com/adobe-type-tools/cmap-resources
 <html dir="ltr" mozdisallowselectionprint>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
     <meta name="google" content="notranslate">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>PDF.js viewer</title>
 
 
     <link rel="stylesheet" href="viewer.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <link type="text/css" rel="stylesheet" href="../../../css/aop.css"  media="screen,projection"/>
 
 
 <!-- This snippet is used in production (included from viewer.html) -->
@@ -42,6 +45,11 @@ See https://github.com/adobe-type-tools/cmap-resources
   </head>
 
   <body tabindex="1" class="loadingInProgress">
+      <!-- <a href="javascript:void(0)" class="closebtn" onclick="window.top.closeOverlay()">&times;</a>       -->
+      <script src="../../js/jquery.min.js"></script>
+      <script src="../../js/aop.js"></script>
+      <script language="javascript" type="text/javascript" src="../../indexedDBWrapper.js"></script>
+      <script language="javascript" type="text/javascript" src="../../settings.js"></script>
     <div id="outerContainer">
       
       <div id="sidebarContainer">
@@ -187,6 +195,7 @@ See https://github.com/adobe-type-tools/cmap-resources
             <div id="toolbarViewer">
               <div id="toolbarViewerLeft">
                 <button id="closeButton" class="toolbarButton" title="Close Document" tabindex="10" >
+                  <img src="images/findbarButton-previous@2x.png" height="100%" width="auto"/>
                   <span data-l10n-id="close_document">Close Document</span>
                 </button>
                 <button id="sidebarToggle" class="toolbarButton" title="Toggle Sidebar" tabindex="11" data-l10n-id="toggle_sidebar">

@@ -9,11 +9,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
-  <style>
-    background-image: url("images/game/conveyerImgs/gameBackground.png");
+  <style>    
+    #canvas {
+           position: fixed;
+           left: 0;
+           top: 0;
+           right: 0;
+           bottom: 0;
+           margin: auto;
+       }
   </style>
 </head>
-  <body>
+  <body style="overflow: hidden; position: fixed;">
     <script src="js/jquery.min.js"></script>
     <script language="javascript" type="text/javascript" src="js/p5.js"></script>
     <script language="javascript" type="text/javascript" src="js/planeBuilder/wings.js"></script>
@@ -23,6 +30,14 @@
     <script language="javascript" type="text/javascript" src="js/planeBuilder/conveyerBeltPlane.js"></script>
     <script language="javascript" type="text/javascript" src="js/planeBuilder/sketch.js"></script>
     <script>
+    
+    
+    $("body").bind("touchstart", function(e) {
+        if(e.target.nodeName === "BODY"){
+           e.preventDefault();
+        }
+    });
+    
     $(function(){
       $("#app_cont").empty();
       plane_S = new p5(planeBuilderSim,'app_cont');

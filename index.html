@@ -144,7 +144,25 @@
       <li><div class="divider"></div></li>
       <li><a class="waves-effect sidenav-close" href="javascript:(loadSettings())"><i class="small"><img src="css/svg/settings.svg" height="24px" width="24px">
       </i>Settings</a></li>
+      <li><a class="waves-effect sidenav-close" href="javascript:(openIOverlay('blankframe.html'))">Overlay</a></li>
     </ul>
+
+
+<!--  Todd iframe Overlay  -->
+
+<!--        -->
+
+<div id="iOverlay" class="overlay">
+
+  <!--  <a href="javascript:void(0)" class="closebtn" onclick="closeIOverlay()">&times;</a> -->
+
+ <!--  <iframe src="content/emptyPortFrame.html" sandbox="allow-scripts allow-same-origin allow-modals"></iframe>  -->
+
+</div>
+
+<!--  End Todd iframe Overlay  -->
+
+
     <div id="app_cont" >
     </div>
   <!--<div id="animation_container" style="display: none; background-color:rgba(255, 255, 255, 1.00); width:auto; height:auto">
@@ -343,6 +361,8 @@
 <script type="text/javascript">
   initalLoad();
   loadHome();
+
+  function closeOverlay() {closeIOverlay();}
 </script>
 </body>
 </html>
