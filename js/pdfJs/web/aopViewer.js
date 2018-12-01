@@ -18,7 +18,15 @@ closeButton.addEventListener("click", () => {
     var viewer = document.getElementById('viewer');
     // http://blog.fspm.jp/2014/06/androidpinch-inoutjsgesturestart.html
     var funcGestureStart = function (e) {};
-    var funcGestureChange = function (e) {};
+    var funcGestureChange = function (e) {
+     if (e.scale < 1.0) {
+        // User moved fingers closer together
+        document.getElementById('zoomOut').click()
+      } else if (e.scale > 1.0) {
+        // User moved fingers further apart
+        document.getElementById('zoomIn').click()
+      }
+    };
     var funcGestureEnd = function (e) {
       if (e.scale < 1.0) {
         // User moved fingers closer together
