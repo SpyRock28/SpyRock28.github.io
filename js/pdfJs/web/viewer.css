@@ -1366,7 +1366,7 @@ html[dir="rtl"] #viewOutline.toolbarButton::before {
   border: 1px solid blue;
 } */
 
-@media all and (max-width: 766px){
+@media all and (max-width: 766px) and (orientation: portrait){
   #closeButton{
     border:1px solid blue;
     background: url(images/findbarButton-previous@2x.png) no-repeat;
@@ -1377,7 +1377,7 @@ html[dir="rtl"] #viewOutline.toolbarButton::before {
   } */
 }
 
-@media all and (min-width: 767px){
+@media all and (min-width: 767px) and (orientation: portrait){
   /* #closeButton.toobarButton::before {
     content: url(images/findbarButton-previous@2x.png);
     border: 1px solid red;
