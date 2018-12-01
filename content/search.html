@@ -1,0 +1,252 @@
+<div id="searchContainer" class="container"  >
+  <div class="card-content" style="padding: 10px 20px 5px 20px">
+    <div class="row" style="margin-bottom:0; width: 100%;">
+      <div class="input-field col s12 m12">
+        <table>
+          <tr>
+            <td>
+              <i class="prefix" style=" vertical-align: middle; float: right;">
+                <a href="javascript:searchTerm()">
+                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                  height="24px" width="24px"
+                  viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve">
+                  <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23
+                  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92
+                  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17
+                  s-17-7.626-17-17S14.61,6,23.984,6z" fill="#000"/>
+                  <g></g>
+                </svg>
+              </a>
+            </i>
+            <input type="text" id="autocomplete-input" onfocus="this.value=''" class="autocomplete">
+            <label for="autocomplete-input">Search</label>
+          </td>
+          <td style="padding:0px;padding-bottom:20px;"><i class="" >
+            <a href="javascript:saveSearch()" class="waves-effect waves-light">
+              <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              height="24px" width="24px" viewBox="0 0 438.533 438.533" style="enable-background:new 0 0 438.533 438.533;"
+              xml:space="preserve">
+              <path d="M432.823,121.049c-3.806-9.132-8.377-16.367-13.709-21.695l-79.941-79.942c-5.325-5.325-12.56-9.895-21.696-13.704
+              C308.346,1.903,299.969,0,292.357,0H27.409C19.798,0,13.325,2.663,7.995,7.993c-5.33,5.327-7.992,11.799-7.992,19.414v383.719
+              c0,7.617,2.662,14.089,7.992,19.417c5.33,5.325,11.803,7.991,19.414,7.991h383.718c7.618,0,14.089-2.666,19.417-7.991
+              c5.325-5.328,7.987-11.8,7.987-19.417V146.178C438.531,138.562,436.629,130.188,432.823,121.049z M182.725,45.677
+              c0-2.474,0.905-4.611,2.714-6.423c1.807-1.804,3.949-2.708,6.423-2.708h54.819c2.468,0,4.609,0.902,6.417,2.708
+              c1.813,1.812,2.717,3.949,2.717,6.423v91.362c0,2.478-0.91,4.618-2.717,6.427c-1.808,1.803-3.949,2.708-6.417,2.708h-54.819
+              c-2.474,0-4.617-0.902-6.423-2.708c-1.809-1.812-2.714-3.949-2.714-6.427V45.677z M328.906,401.991H109.633V292.355h219.273
+              V401.991z M402,401.991h-36.552h-0.007V283.218c0-7.617-2.663-14.085-7.991-19.417c-5.328-5.328-11.8-7.994-19.41-7.994H100.498
+              c-7.614,0-14.087,2.666-19.417,7.994c-5.327,5.328-7.992,11.8-7.992,19.417v118.773H36.544V36.542h36.544v118.771
+              c0,7.615,2.662,14.084,7.992,19.414c5.33,5.327,11.803,7.993,19.417,7.993h164.456c7.61,0,14.089-2.666,19.41-7.993
+              c5.325-5.327,7.994-11.799,7.994-19.414V36.542c2.854,0,6.563,0.95,11.136,2.853c4.572,1.902,7.806,3.805,9.709,5.708l80.232,80.23
+              c1.902,1.903,3.806,5.19,5.708,9.851c1.909,4.665,2.857,8.33,2.857,10.994V401.991z" fill="#000"/>
+              <g></g>
+            </svg>
+          </a>
+        </i></td>
+      </tr>
+    </table>
+
+        <!-- <i class="prefix" style="color: gray; vertical-align: middle; float: right; fill: gray">
+          <a href="javascript:searchTerm()">
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            height="24px" width="24px"
+            	 viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve">
+            <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23
+            	s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92
+            	c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17
+            	s-17-7.626-17-17S14.61,6,23.984,6z" fill="#000"/>
+              <g></g>
+            </svg>
+          </a>
+        </i> -->
+        <!-- <input type="text" id="autocomplete-input" onfocus="this.value=''" class="autocomplete">
+          <label for="autocomplete-input">Search</label> -->
+        <!-- <i class="prefix" >
+          <a href="javascript:saveSearch()">
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+               height="24px" width="24px" viewBox="0 0 438.533 438.533" style="enable-background:new 0 0 438.533 438.533;"
+               xml:space="preserve">
+              <path d="M432.823,121.049c-3.806-9.132-8.377-16.367-13.709-21.695l-79.941-79.942c-5.325-5.325-12.56-9.895-21.696-13.704
+                C308.346,1.903,299.969,0,292.357,0H27.409C19.798,0,13.325,2.663,7.995,7.993c-5.33,5.327-7.992,11.799-7.992,19.414v383.719
+                c0,7.617,2.662,14.089,7.992,19.417c5.33,5.325,11.803,7.991,19.414,7.991h383.718c7.618,0,14.089-2.666,19.417-7.991
+                c5.325-5.328,7.987-11.8,7.987-19.417V146.178C438.531,138.562,436.629,130.188,432.823,121.049z M182.725,45.677
+                c0-2.474,0.905-4.611,2.714-6.423c1.807-1.804,3.949-2.708,6.423-2.708h54.819c2.468,0,4.609,0.902,6.417,2.708
+                c1.813,1.812,2.717,3.949,2.717,6.423v91.362c0,2.478-0.91,4.618-2.717,6.427c-1.808,1.803-3.949,2.708-6.417,2.708h-54.819
+                c-2.474,0-4.617-0.902-6.423-2.708c-1.809-1.812-2.714-3.949-2.714-6.427V45.677z M328.906,401.991H109.633V292.355h219.273
+                V401.991z M402,401.991h-36.552h-0.007V283.218c0-7.617-2.663-14.085-7.991-19.417c-5.328-5.328-11.8-7.994-19.41-7.994H100.498
+                c-7.614,0-14.087,2.666-19.417,7.994c-5.327,5.328-7.992,11.8-7.992,19.417v118.773H36.544V36.542h36.544v118.771
+                c0,7.615,2.662,14.084,7.992,19.414c5.33,5.327,11.803,7.993,19.417,7.993h164.456c7.61,0,14.089-2.666,19.41-7.993
+                c5.325-5.327,7.994-11.799,7.994-19.414V36.542c2.854,0,6.563,0.95,11.136,2.853c4.572,1.902,7.806,3.805,9.709,5.708l80.232,80.23
+                c1.902,1.903,3.806,5.19,5.708,9.851c1.909,4.665,2.857,8.33,2.857,10.994V401.991z" fill="#000"/>
+              <g></g>
+            </svg>
+          </a>
+        </i> -->
+      </div>
+    </div>
+    <div class="row" style="margin-bottom:0">
+      <div class="input-field col s6 m6" style = "width: 100%;">
+        <p></p>
+        <div class="card-content white-text">
+          <!--  <span id="search_title" class="card-title" style = "color: #000 !important;"></span> -->
+          <p id = "search_result" style = "color: #000 !important;"></p>
+        </div>
+        <div class="card-action">
+          <!-- <a onclick="loadAcronyms();">Acronyms and Glossary</a> -->
+          <div>
+            <input type="checkbox" id="acrnm" checked="checked" onclick="loadAcrnmIndecies();"/>
+            <label for="acrnm">Acronyms</label>
+          </div>
+          <div>
+            <input type="checkbox" id="gloss" checked="checked" onclick="loadGlossIndecies();"/>
+            <label for="gloss">Glossary</label>
+          </div>
+          <div>
+            <input type="checkbox" id="aop-handbook" checked="checked" onclick="loadHandbookIndecies();"/>
+            <label for="aop-handbook">AoP Handbook</label>
+          </div></br>
+
+        </br></br>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- <script>
+  window.onload = () => {
+    loadAcrnmIndecies();
+    loadGlossIndecies();
+    loadHandbookIndecies();
+  }
+</script> -->
+<script>
+  openSearchDB();
+  $(document).ready(function(){
+    $('input.autocomplete').autocomplete({
+      data: {
+        "AA " : null,
+        "ABSS " : null,
+        "ABW " : null,
+        "ACF " : null,
+        "AFI " : null,
+        "AFMAN " : null,
+        "AFPC " : null,
+        "AFPD " : null,
+        "AFRIMS " : null,
+        "AFSAS " : null,
+        "AFSOC " : null,
+        "AMOC " : null,
+        "AO " : null,
+        "AOC " : null,
+        "AOR " : null,
+        "CER " : null,
+        "CoF " : null,
+        "CPI " : null,
+        "DBR " : null,
+        "DLA " : null,
+        "DMAIC " : null,
+        "DMAWG " : null,
+        "DoD " : null,
+        "DOTmLPF-P " : null,
+        "DP " : null,
+        "FDB " : null,
+        "FM " : null,
+        "FRIP " : null,
+        "GMT " : null,
+        "GPC " : null,
+        "IA " : null,
+        "ICE " : null,
+        "IM " : null,
+        "IMS " : null,
+        "IMSC " : null,
+        "IPV " : null,
+        "JA " : null,
+        "LAIRMCM " : null,
+        "LGS " : null,
+        "LRIP " : null,
+        "LRS " : null,
+        "LRU " : null,
+        "MAPO " : null,
+        "MDS " : null,
+        "METL " : null,
+        "METs " : null,
+        "MGA " : null,
+        "MIPR " : null,
+        "MLG " : null,
+        "MORD " : null,
+        "NAF " : null,
+        "OC-ALC " : null,
+        "OO-ALC/OBP " : null,
+        "OFPS " : null,
+        "OMS " : null,
+        "OO-ALC " : null,
+        "ORB " : null,
+        "OPR " : null,
+        "OSHA " : null,
+        "PCS " : null,
+        "PDM " : null,
+        "PM " : null,
+        "PPA-HQ " : null,
+        "PPPO " : null,
+        "PPSO " : null,
+        "QA " : null,
+        "RCA " : null,
+        "RDS " : null,
+        "RIE " : null,
+        "SIO " : null,
+        "SME " : null,
+        "SPO " : null,
+        "ToC " : null,
+        "TSP " : null,
+        "UDLM " : null,
+        "USR " : null,
+        "VPP " : null,
+        "WCD " : null,
+        "WIP " : null,
+        "WR-ALC " : null,
+
+        "Art of the Possible (AoP) " : null,
+        "AFTO-202 " : null,
+        "Andon " : null,
+        "Comfortable in Red " : null,
+        "Constraint " : null,
+        "Critical Path " : null,
+        "Flowtime " : null,
+        "Implied Tasks " : null,
+        "Manloading " : null,
+        "Maturity Matrix " : null,
+        "Process Machine " : null,
+        "Pull System " : null,
+        "Push System " : null,
+        "Queue " : null,
+        "Radiator Chart " : null,
+        "Rapid Improvment Events (RIE) " : null,
+        "Road To... " : null,
+        "Root Cause Analysis (RCA) " : null,
+        "Specified Tasks " : null,
+        "Standard Work " : null,
+        "Tactical Management " : null,
+        "Takt Time " : null,
+        "Theory of Constraints (ToC) " : null,
+        "Throughput " : null,
+        "Urgency Tools " : null,
+        "Value Stream Analysis (VSA) " : null,
+        "Value Stream Map (VSM) " : null,
+        "Visual Managment " : null,
+      "Wall Walk " : null//,
+
+    },
+    onAutocomplete: function(txt, val, val) {
+      // let pdfSearch = (text, searchDomain) => {
+      //
+      // };
+      $("#search_title").html(txt);
+      $("#search_result" ).html( searchInKey(txt, searchDomain) );
+
+    },
+    limit: 20,
+  });
+  });
+
+//style="color: gray; vertical-align: middle; float: right; fill: gray"
+
+</script>

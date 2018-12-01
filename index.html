@@ -1,39 +1,348 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>Lazy Government Employees</title>
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" />
+  <link type="text/css" rel="stylesheet" href="css/aop.css"  media="screen,projection"/>
+  <link href="https://fonts.googleapis.com/css?family=Armata|Montserrat" rel="stylesheet">
+  <!--Let browser know website is optimized for mobile-->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon-180x180.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon//favicon-16x16.png">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="apple-touch-startup-image" sizes="2048x2732" href="images/splash/2048x2732.png">
+  <link rel="apple-touch-startup-image" sizes="1668x2224" href="images/splash/1668x2224.png">
+  <link rel="apple-touch-startup-image" sizes="1536x2048" href="images/splash/1536x2048.png">
+  <link rel="apple-touch-startup-image" sizes="1242x2208" href="images/splash/1242x2208.png">
+  <link rel="apple-touch-startup-image" sizes="1125x2436" href="images/splash/1125x2436.png">
+  <link rel="apple-touch-startup-image" sizes="750x1334" href="images/splash/750x1334.png">
+  <link rel="apple-touch-startup-image" sizes="640x1136" href="images/splash/640x1136.png">
+  <link rel="mask-icon" href="images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <style>
+  #topNav{
+    overflow:hidden;
+    position:fixed;
+    z-index:999;
+  }
+  #topNav.hidden{
+    display:none;
+  }
+  .hidden_toggle {
+    display: none;
+  }
+  .mouse_point {cursor: pointer;}
+</style>
 </head>
 <body>
-  <div id="page-wrapper">
-    <a href="wrapperTest.html">Test IndexedDB Wrapper</a>
-    <a href="/web/viewer.html?file=NodeJSpresentation.pdf#page=5">Open PDF viewer node presentation</a>
-    <!-- Form for CRUD on Employees DB -->
-    <form id="new-employee-form" method="POST" action="#" style="display: block">
-      <label for="name">Full name</label> <input type="text" name="newName" id="newName"></br>
-      <label for="supervisor">Supervisor</label> <input type="text" name="newSupervisor" id="newSupervisor"></br>
-      <label for="position">Position</label> <input type="text" name="newPosition" id="newPosition"></br></br>
-      <input type="submit" name="create-employee" value="Create">
-    </form>
+  <nav id="topNav" class = "fluid collapse-large">
+    <div class="nav-wrapper z-depth-2" >
+      <table style="width:100%; margin-left:10px;" >
+        <tr>
+          <td style="padding:0; width:20px; ">
+            <a id="menuButton" href="#" data-activates="mobile-demo" class="button-collapse" >
+              <div class="burger">
+                <span class="patty0" id="bur1"></span>
+                <span class="patty1" id="bur2"></span>
+                <span class="patty2" id="bur3"></span>
+              </div>
+            </a>
+            <a id ="backButton" href="javascript:(clickBackToResources())" style="display:none;">
+              <div class="burger">
+                <span class="patty0" id="pat1"></span>
+                <span class="patty1" id="pat2"></span>
+                <span class="patty2" id="pat3"></span>
+              </div>
+            </a>
+            <a id ="backActivityButton" href="javascript:(clickBackToActivity())" style="display:none;">
+              <div class="burger">
+                <span class="patty0" id="patAct1"></span>
+                <span class="patty1" id="patAct2"></span>
+                <span class="patty2" id="patAct3"></span>
+              </div>
+            </a>
+            <a id ="backChartsButton" href="javascript:(clickBackToCharts())" style="display:none;">
+              <div class="burger">
+                <span class="patty0" id="patChart1"></span>
+                <span class="patty1" id="patChart2"></span>
+                <span class="patty2" id="patChart3"></span>
+              </div>
+            </a>
+            <a id ="backQuizButton" href="javascript:(clickBackToQuiz())" style="display:none;">
+              <div class="burger">
+                <span class="patty0" id="patQuiz1"></span>
+                <span class="patty1" id="patQuiz2" ></span>
+                <span class="patty2" id="patQuiz3" ></span>
+              </div>
+            </a>
+          </td>
+          <td style="padding:0">
+            <a href="#!" style="font-size:20px; color:#fff; margin-left:10px;" >
+              <span id="pageTitle"></span>
+            </a>
+          </td>
+          <td style="padding:0; padding-right:30px;">
+            <a href="javaScript:(loadSearchModal())">
+              <i style="color: white; vertical-align:middle; float:right;"><img src="css/svg/search.svg" height="24px" width="24px"> </i>
+            </a>
+          </td>
+        </tr>
+      </table>
 
-    <form id="edit-employee-form" method="POST" action="#" style="display: none">
-      <label for="name">Full name</label> <input type="text" name="editName" id="editName"></br>
-      <label for="supervisor">Supervisor</label> <input type="text" name="editSupervisor" id="editSupervisor"></br>
-      <label for="position">Position</label> <input type="text" name="editPosition" id="editPosition"></br></br>
-      <input type="submit" name="create-employee" value="Update">
-    </form>
+      <div>
+        <div class="right-align">
+          <a class="waves-effect" href="javaScript:(loadSearchModal())">
+            <table class="footerTable">
+              <tr>
+                <td class="center-align"><i class="small" style="color: white;"><img src="css/svg/search.svg" height="24px" width="24px">
+                </td>
+              </tr>
+              <tr>
+                <td class="center-align">Search</td>
+              </tr>
+            </table>
+          </a>
+        </div>
+        <ul class="right hide-on-med-and-down">
+          <li><a class="waves-effect" href="javascript:(loadHome())">Home</a></li>
+          <li><a class="waves-effect" href="javascript:(loadAboutUs())">About us</a></li>
+          <li><a class="waves-effect" href="javascript:(loadQuizList())">Quizzes</a></li>
+          <li><a class="waves-effect" href="javascript:(loadResources())">Resources</a></li>
+          <li><a class="waves-effect" href="javascript:(loadActivityPage())">Activity</a></li>
+          <!-- <li><a class="waves-effect" href="javascriptL(loadCharts())">Charts</a></li> -->
+          <!--   <li><a class="waves-effect" href="javascript:(loadNewsletter())">Archived Newsletters</a></li> -->
+          <li><a class="waves-effect" href="javaScript:(loadCalculator())">Calculator</a></li>
+          <li><a class="waves-effect" href="javaScript:(loadSettings())">Settings</a></li>
+        </ul>
 
-    <!-- Todo Item List -->
-    <ul id="employee-list"></ul>
-
-
-    <a href="emailBody.html">Test HTML Email</a>
+      </div>
+    </nav>
+    <ul class="side-nav"  id="mobile-demo" >
+      <div class="background center-align">
+        <img class="center-align" src="images/aopAppIcon.png" style="padding:20px 20px 0px 20px; max-width:60%">
+        <h5 style="padding-bottom:20px;">Art of the Possible</h5>
+      </div>
+      <li><a class="waves-effect" href="javascript:(loadHome())"><i class="small"><img src="css/svg/home-button.svg" height="24px" width="24px"></i>Home</a></li>
+      <li><div class="divider"></div></li>
+      <li><a class="waves-effect sidenav-close" href="javascript:(loadAboutUs())"><i class="small">
+        <img src="css/svg/help.svg" height="24px" width="24px">
+      </i>About us</a></li>
+      <li><a class="waves-effect sidenav-close" href="javascript:(loadActivityPage())"><i class="small"><img src="css/svg/star.svg" height="24px" width="24px">
+      </i>Activities</a></li>
+      <li><a class="waves-effect sidenav-close" href="javascript:(loadQuizList())" ><i class="small"><img src="css/svg/gearHead.svg">
+      </i>Quizzes</a></li>
+      <li><a class="waves-effect sidenav-close" href="javascript:(loadResources())" ><i class="small" ><img src="css/svg/photo-library.svg" height="24px" width="24px">
+      </i>Resources</a></li>
+      
+      <!-- <li><a class="waves-effect sidenav-close" href="javascript:(loadCharts())"><i class="small"><img src="css/svg/chart.svg" height="24px" width="24px">
+      </i>Charts</a></li> -->
+      <!-- <li><a class="waves-effect sidenav-close" href="javascript:(loadNewsletter())"> <i class="small"><img src="css/svg/folded-newspaper-small.svg"></i> Archived Newsletters</a></li> -->
+      <li><div class="divider"></div></li>
+      <li><a class="waves-effect sidenav-close" href="javascript:(loadSettings())"><i class="small"><img src="css/svg/settings.svg" height="24px" width="24px">
+      </i>Settings</a></li>
+    </ul>
+    <div id="app_cont" >
+    </div>
+  <!--<div id="animation_container" style="display: none; background-color:rgba(255, 255, 255, 1.00); width:auto; height:auto">
+    <canvas id="canvas" width="100%" height="100%" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
+    <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:auto; height:auto; position: absolute; left: 0px; top: 0px; display: block;">
+    </div>
+  </div>-->
+  <!--<div id="search_modal_cont">
+    <div id="search_modal" class="modal" style="box-shadow: none;background-color:transparent;">
+      <div class="search_modal-header" style="text-align: right;">
+        <a href="#!" class="modal-close waves-effect " onclick="javaScript:(clearColor())" style="color:#fff;padding-top:2px;"><i class="small material-icons" style="border:3px solid #fff; border-radius:20px;">close</i></a>
+      </div>
+      <div id="search_content" class="modal-content"
+      style="box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.3); background-color:#fff; border-radius:5px;" >
+    </div>
   </div>
+</div>-->
+<div id="modal_cont">
+  <div id="modal1"  class="modal calcModal" style="box-shadow: none;background-color:transparent;">
+    <div class="modal-header" style="text-align: right;">
+      <a href="#!" class="modal-close waves-effect " onclick="javaScript:(clearColor())"
+      style="    border: 3px solid white;
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+      padding: 5px;">
+      <img src="css/svg/close-button.svg" height="24px" width="24px">
+    </a>
+  </div>
+  <div id="modal_content" class="modal-content calcModal"
+  style="box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.3); background-color:#fff; border-radius:5px;" >
+</div>
+</div>
+</div>
 
-  <script src="//npmcdn.com/pdfjs-dist/build/pdf.js"></script>
-  <script src="db.js"></script>
-  <script src="app.js"></script>
+<div id="modal_quiz">
+  <div id="quizModal"  class="modal calcModal" style="box-shadow: none;background-color:transparent;">
+    <div class="modal-header" style="text-align: right;" id="quizHeader">
+    </div>
+    <div id="quiz_content" class="modal-content calcModal"
+    style="box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.3); background-color:#fff; border-radius:5px;" >
+  </div>
+</div>
+</div>
+
+<div id="modal_land">
+  <div id="landscapeModal"  class="modal landscapeModal" style="box-shadow: none;background-color:transparent;">
+    <div class="modal-header" style="text-align: right;">
+      <a href="#!" class="modal-close waves-effect " onclick="javaScript:(clearColor())"
+      style="    border: 3px solid white;
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+      padding: 5px;">
+      <img src="css/svg/close-button.svg" height="24px" width="24px">
+    </a>
+  </div>
+  <div id="modal_content_landscape" class="modal-content">
+  </div>
+</div>
+</div>
+
+
+
+
+<footer id="mobileFooter" class="page-footer fluid">
+  <div class="container">
+    <div class="row" style="margin-bottom:3px;">
+
+      <div class="col m6 s6 center-align">
+        <a class="waves-effect" href="javaScript:(loadCalculatorModal())" disabled="disabled">
+          <table class="footerTable">
+            <tr>
+              <td class="center-align">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" style="padding-top:2px;">
+                  <path id="calcsvg" class="calculator" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-17 5c0-1.654 1.346-3 3-3h6v9h-9v-6zm0 14v-6h9v9h-6c-1.654 0-3-1.346-3-3zm20 0c0 1.654-1.346 3-3 3h-6v-9h9v6zm0-8h-9v-9h6c1.654 0 3 1.346 3 3v6zm-2 6h-5v-1h5v1zm-5-11h5v1h-5v-1zm0 13v-1h5v1h-5zm-6-2v1h-2v2h-1v-2h-2v-1h2v-2h1v2h2zm-1.793-10.5l1.414 1.414-.707.707-1.414-1.414-1.414 1.414-.708-.707 1.414-1.414-1.414-1.414.707-.707 1.415 1.414 1.415-1.415.708.708-1.416 1.414zm9.793-2c0-.276.224-.5.5-.5s.5.224.5.5-.224.5-.5.5-.5-.224-.5-.5zm1 4c0 .276-.224.5-.5.5s-.5-.224-.5-.5.224-.5.5-.5.5.224.5.5z" fill="#424242"
+                  /></svg>
+
+                </td>
+              </tr>
+              <tr>
+                <td id="calcLabel" class="center-align">LL Calculator</td>
+              </tr>
+            </table></a>
+          </div>
+          <div class="col m6 s6 center-align">
+            <a class="waves-effect" href="javaScript:(loadNotesModal())" >
+              <table class="footerTable">
+                <tr>
+                  <td class="center-align"><i id="notesIcon" class="footerIcons">
+                   <!--  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
+                      <path d="M0 0h24v24H0z" fill="none"/>
+                      <path class="eventNote"  d="M17 10H7v2h10v-2zm2-7h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm-5-5H7v2h7v-2z" fill="#424242"/>
+                    </svg> -->
+
+                    <svg id="binderIcon" class="eventNote" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.22 558"
+                    width="28" height="28" fill="#424242">
+                    <defs><style>.cls-1,.cls-2,.cls-3,.cls-4{stroke:#424242;stroke-miterlimit:10;}
+                    .cls-2,.cls-4{stroke-width:8px;}
+                    .cls-3,.cls-4{fill:none;}
+                    .cls-3{stroke-width:11px;}
+                  </style></defs><title>binder</title>
+                  <rect class="cls-1" x="78.72" y="325" width="44" height="143" fill="" />
+                  <rect class="cls-1" x="78.72" y="170" width="44" height="143"/>
+                  <polygon class="cls-1" points="480.71 31.5 480.71 0.5 122.72 0.5 78.72 0.5 78.72 44.5 78.72 158 122.72 158 122.72 44.5 467.71 44.5 467.71 513.5 122.72 513.5 122.72 480 78.72 480 78.72 526.5 109.72 526.5 109.72 557.5 467.71 557.5 511.71 557.5 511.71 513.5 511.71 31.5 480.71 31.5"/>
+                  <circle class="cls-2" cx="167.22" cy="129" r="25"/>
+                  <path class="cls-3" d="M252.5,589.63c-3-.08-6-.13-9-.13-56.45,0-102.22,15.22-102.22,34s45.77,34,102.22,34c3,0,6,0,9-.13Z" transform="translate(-134.78 -498)"/>
+                  <path class="cls-4" d="M247,656c9.82,6.8,69.4-2.07,67-8" transform="translate(-134.78 -498)"/>
+                  <path class="cls-3" d="M252.5,743.63c-3-.08-6-.13-9-.13-56.45,0-102.22,15.22-102.22,34s45.77,34,102.22,34c3,0,6,0,9-.13Z" transform="translate(-134.78 -498)"/>
+                  <path class="cls-3" d="M251.5,896.63c-3-.08-6-.13-9-.13-56.45,0-102.22,15.22-102.22,34s45.77,34,102.22,34c3,0,6,0,9-.13Z" transform="translate(-134.78 -498)"/>
+                  <path class="cls-4" d="M243,810c9.82,6.8,69.4-2.07,67-8" transform="translate(-134.78 -498)"/>
+                  <path class="cls-4" d="M244,963c9.82,6.8,69.4-2.07,67-8" transform="translate(-134.78 -498)"/>
+                  <circle class="cls-2" cx="167.22" cy="282" r="25"/>
+                  <circle class="cls-2" cx="167.22" cy="437" r="25" /></svg>
+
+
+
+                </i>
+              </td>
+            </tr>
+            <tr>
+              <td id="notesLabel" class="center-align">Binder</td>
+            </tr>
+          </table></a>
+        </div>
+          <!-- <div class="col m4 s4 center-align">
+            <a class="waves-effect" href="javaScript:(loadEmailModal())" >
+              <table class="footerTable">
+                <tr>
+                  <td class="center-align"><i class="small material-icons footerIcons">
+                    <svg width="28" height="28" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <path fill="none" d="M0 0h24v24H0z"/>
+                      <path class="mailIcon" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z" fill="#424242"/>
+                    </svg>
+                  </i>
+                </td>
+              </tr>
+              <tr>
+                <td class="center-align" id="mailLabel">Email</td>
+              </tr>
+            </table>  </a>
+          </div>- -->
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</footer>
+<!--JavaScript at end of body for optimized loading-->
+<script language="javascript" type="text/javascript" src="js/indexedDBWrapper.js"></script>
+<script language="javascript" type="text/javascript" src="js/quizEngineDB.js"></script>
+<script language="javascript" type="text/javascript" src="js/settings.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/createjs-2015.11.26.min.js"></script>
+<script src="content/LittlesLawAnimation.js"></script>
+<script src="js/aop.js"></script>
+<script src="js/aopCalc.js"></script>
+<script src="js/materialize.min.js"></script>
+<script src="js/highcharts.js"></script>
+<script src="js/highcharts-more.js"></script>
+
+<script language="javascript" type="text/javascript" src="js/searchDomain.js"></script>
+<script language="javascript" type="text/javascript" src="js/searchAoP.js"></script>
+<script language="javascript" type="text/javascript" src="js/quizQuestions.js"></script>
+<script language="javascript" type="text/javascript" src="js/quizEngine.js"></script>
+<script language="javascript" type="text/javascript" src="js/activityStatus.js"></script>
+<script language="javascript" type="text/javascript" src="js/p5.js"></script>
+<script language="javascript" type="text/javascript" src="js/p5.dom.min.js"></script>
+<script language="javascript" type="text/javascript" src="js/p5.play_patch119.js"></script>
+<script language="javascript" type="text/javascript" src="js/sketch.js"></script>
+<script language="javascript" type="text/javascript" src="js/car.js"></script>
+<script language="javascript" type="text/javascript" src="js/divider.js"></script>
+<script language="javascript" type="text/javascript" src="js/lane.js"></script>
+<script language="javascript" type="text/javascript" src="js/billboard.js"></script>
+<script language="javascript" type="text/javascript" src="js/popup.js"></script>
+<script language="javascript" type="text/javascript" src="js/conveyer/sketch.js"></script>
+<script language="javascript" type="text/javascript" src="js/conveyer/widget.js"></script>
+<script language="javascript" type="text/javascript" src="js/conveyer/conveyerBelt.js"></script>
+<script language="javascript" type="text/javascript" src="js/conveyer/pointer.js"></script>
+<script language="javascript" type="text/javascript" src="js/conveyer/textBubble.js"></script>
+
+<script language="javascript" type="text/javascript" src="js/calcNotes.js"></script>
+<script language="javascript" type="text/javascript" src="js/emailWrapper.js"></script>
+<script language="javascript" type="text/javascript" src="js/gatebarchart.js"></script>
+<script language="javascript" type="text/javascript" src="js/barchartBuilder.js"></script>
+<script language="javascript" type="text/javascript" src="js/machineTableBuilder.js"></script>
+<script language="javascript" type="text/javascript" src="js/machineTable.js"></script>
+
+
+
+<script language="javascript" type="text/javascript" src="js/criticalPath/sketch.js"></script>
+<script language="javascript" type="text/javascript" src="js/criticalPath/gateBox.js"></script>
+
+<script type="text/javascript">
+  initalLoad();
+  loadHome();
+</script>
 </body>
 </html>

@@ -1,0 +1,262 @@
+<div id="calcContainer">
+	<div id="value_choice">
+		<div class="card">
+			<div class="card-title" style="background-color:#F1F1F1 !important; padding:5px 2px 5px 10px;font-size:14px;font-weight:bold; color:#4B4B4B;">
+				Choose value to Calculate:
+			</div>
+			<div class="card-content" style="padding: 10px 20px 5px 20px">
+				<div class="row" style="margin-bottom:0">
+					<div class="col s12 m12 mouse_point waves-effect waves-light btn calculatorButton" style="background:#0EABDA;" onclick="setCalcType(0);">WIP</div>
+				</div>
+				<div class="row" style="margin-bottom:0">
+					<div style="background:#c65353;" class="col s12 m12 mouse_point waves-effect waves-light btn calculatorButton" onclick="setCalcType(3);">Flowtime</div>
+				</div>
+				<div class="row" style="margin-bottom:0">
+					<div style="background:#029755" class="col s12 m12mouse_point waves-effect waves-light btn calculatorButton" onclick="setCalcType(1);">Throughput</div>
+				</div>
+				<div class="row" style="margin-bottom:0">
+					<div style="background:#ffa500" class="col s12 m12mouse_point waves-effect waves-light btn calculatorButton" onclick="setCalcType(2);">Takt Time</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container" >
+	<div class="row">
+		<div id="tab_sect" class="hidden_toggle col s12" style="padding:0;">
+			<ul class="tabs" style="height:35;">
+				<li class="tab col s5"><a href="javascript:(onTabToggle('c'))" id="tab_calc" style="font-size:90%;" class="active" >Calculate</a></li>
+				<li class="tab col s7"><a href="javascript:(onTabToggle('t'))" id="tab_tt" style="font-size:90%;line-height:20px; padding-top:5px;">
+					<ul>
+						<li>Throughput/Takt</li>
+						<li>Guide</li>
+					</ul>
+				</a></li>
+				<li>
+				</ul>
+			</div>
+
+			<div id="calc_sect" class="hidden_toggle col s12" style="padding:0;">
+				<div class="card">
+					<div class="card-title" style="background-color:#F1F1F1 !important; padding:5px 2px 5px 10px;font-size:14px; color:#4B4B4B; font-weight:bold">
+
+						<!--<input type="button" value="1/x" id="one_x" onclick="toggleReciprocal()" class="onexCalcButton">-->
+						<table>
+							<tr>
+								<td style="padding:0px">Calculating For  <span id="lbl_ttl"></span></td>
+								<td style="padding:0px;"><a id="one_x" href="javascript:toggleReciprocal()" class="btn waves-effect waves-light btn-small darken-1" style="padding:0 .8rem;float:right;color:black;font-size:12px;background-color:lightsteelblue;">1/x</a></td>
+							</tr>
+						</table>
+
+					</div>
+					<div class="card-content" style="padding: 10px 20px 5px 20px">
+						<div class="row" style="margin-bottom:0">
+							<div class="input-field col s6 m6" style="margin-top:0px !important;">
+								<div style="color:#9e9e9e">
+									<span id="lbl_val1" style="font-size:12px">Value1</span>
+									<a class="tip tooltipped" id="ttpone" data-position="bottom" data-tooltip="123abc">?</a>
+								</div>
+								<input type="number" id="inpt_val1" value="0" onfocus="event.target.select()" class="numb_input" style="font-size:2.5rem; margin:0 0 5px 0;">
+							</div>
+							<div class="input-field col s6 m6" id="timetype1" style="margin-top:0px !important;">
+								<div style="color:#9e9e9e; font-size:12px;">Time Type</div>
+								<select style="display:block" id="seltime1" onchange="timeType1Change()">
+									<option value="" disabled selected></option>
+									<option value="seconds"></option>
+									<option value="minutes"></option>
+									<option value="hours"></option>
+									<option value="days"></option>
+									<option value="weeks"></option>
+									<option value="months"></option>
+									<option value="quarters"></option>
+									<option value="years"></option>
+								</select>
+
+							</div>
+
+						</div>
+						<div class="row" style="margin-bottom:0">
+							<div class="input-field col s6 m6" style="margin-top:0px !important;">
+								<div style="color:#9e9e9e; font-size:12px">
+									<span id="lbl_val2">Value2</span>
+									<a class="tip tooltipped" data-position="bottom" data-tooltip="abc123" id="ttptwo">?</a>
+								</div>
+								<input type="number" id="inpt_val2" value="0" onfocus='event.target.select()' class="numb_input" style="font-size:2.5rem; margin:0 0 5px 0;">
+							</div>
+							<div class="input-field col s6 m6 " id="timetype2"  style="margin-top:0px !important;">
+								<div style="color:#9e9e9e; font-size:12px;">Time Type</div>
+								<select style="display:block" id="seltime2" onchange="timeType2Change()">
+									<option value="" disabled selected></option>
+									<option value="seconds"></option>
+									<option value="minutes"></option>
+									<option value="hours"></option>
+									<option value="days"></option>
+									<option value="weeks"></option>
+									<option value="months"></option>
+									<option value="quarters"></option>
+									<option value="years"></option>
+								</select>
+							</div>
+						</div>
+						<div class="row" style="margin-bottom:10px">
+							<input type="button" value="Calculate" id="btn_calc" onclick="calcResult()" class="btn waves-effect waves-light darken-1" style="width:100%;font-weight:bold;background:#651fa9">
+						</div>
+						<div class="row" style="margin-bottom:5px">
+							<div class="col s6 m6 clearCalcButton" >
+								<input type="button" value="Clear" id="btn_clear" onclick="clearVals()" class="btn waves-effect waves-light" style="width:100%;color:black; background-color:#FFFFFF;">
+							</div>
+							<div class="col s6 m6 resetCalcButton" >
+								<input type="button" value="Reset" id="btn_reset" onclick="resetChoice()" class="btn waves-effect waves-light black lighten-1" style="width:100%;color:white;">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-title " style="background-color:#40c4ff !important; padding:5px 2px 5px 10px;font-size:14px;color:#fff; font-weight:bold;">
+						Result
+					</div>
+					<div class="card-content" style="padding: 5px 20px 5px 20px">
+						
+						<div class="row" style="border-top:1px solid lightgray; margin-bottom:5px;">
+							<table style="border-spacing: 0px;border-bottom:none; text-align:center;" class="calcResultTable calcResults centered">
+								<thead style="border-bottom:none;">
+									<tr>
+										<td class="resultTable"><span id="eq_result"></span></td>
+										<td class="resultTable">&nbsp;=&nbsp;</td>
+										<td class="resultTable"><span id="eq_val1"></span></td>
+										<td class="resultTable"><span id="eq_opr"></span></td>
+										<td class="resultTable"><span id="eq_recipr" class="hidden_toggle">1 / </span><span id="eq_val2"></span></td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="calcValueResults">
+										<td><span id="result" style="color:#651fa9;">0</span></td>
+										<td>&nbsp;=&nbsp;</td>
+										<td ><span id="val1" >0</span></td>
+										<td><span id="opr_val">&nbsp;x&nbsp;</span></td>
+										<td ><span id="val2" >0</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						
+						<div class="row" style="text-align:center; margin-bottom:0;">
+							<span id="result2" style="color:#651fa9;text-align:center; font-weight:bold; font-size:8vw">0</span>
+							<span id="result2units" style="color:#651fa9;padding:5px;text-align:center; font-weight:bold; font-size:8vw"></span>
+						</div>
+						<div id="save_sect" class="row hidden_toggle">
+							<form class="col s12">
+								<div class="row">
+									<div class="col">
+										<div class="input-field col s6">
+											<input id="fld_save_name" type="text" class="validate" required />
+											<label for="fld_save_name">Name</label>
+										</div>
+										<div class="input-field col s6">
+											<input id="fld_save_group" type="text" class="validate"/>
+											<label for="fld_save_group">Group</label>
+										</div>
+									</div>
+									<!-- <div class="input-field col s6">
+										<button class="btn waves-effect waves-light blue darken-1" id="btn_save" onclick="saveResults()" style="width:100%;">Save Results</button>
+									</div> -->
+								</div>
+							</form>
+						</div>
+						
+						<div class="row">
+							<i class="col s12" style="float:right; ">
+								<a id="openSaveButton" class='btn' href="javascript:openSave()" style="font-weight:bold;width:100%">Click To Save</a>
+							    <a id="saveCalcButton" class='btn hidden_toggle' href="javascript:saveResults()" style="font-weight:bold;width:100%">Save Calculation</a>
+							</i>
+						</div>	
+					</div>
+				</div>
+
+			</div>
+			<div id="takt_sect" class="hidden_toggle col s12" style="padding:0;" >
+				<div class="card">
+					<div class="card-title" style="background-color:#F1F1F1 !important; padding:5px 2px 5px 10px;font-size:14px; color:#4B4B4B;font-weight:bold;">
+						Enter Values and Select Units
+					</div>
+					<div class="card-content" style="padding: 10px 10px 5px 10px">
+						<div class="row " style="margin-bottom:0">
+							<div class="input-field col s3 m3" style="margin-top:0px !important;">
+								<div style="color:#9e9e9e; font-size:10px;">
+									<span>Unit Value</span>
+								</div>
+								<input type="number" id="inpt_ttk" value="0" onfocus="event.target.select()" oninput="refreshTHelp()" style="font-size:2.5rem;margin:0 0 5px 0; ">
+							</div>
+							<div class="input-field col s3 m3" style="margin-top:0px !important;">
+								<div style="color:#9e9e9e; font-size:10px;">
+									<span>Time Value</span>
+								</div>
+								<input type="number" id="inpt_time" value="0" onfocus="event.target.select()" oninput="refreshTHelp()" style="font-size:2.5rem;margin:0 0 5px 0;">
+							</div>
+							<div class="input-field col s6 m6" style="margin-top:0px !important;">
+								<div style="color:#9e9e9e; font-size:10px;">Time Type</div>
+								<select style="display:block" id="sel_tt_time"  onchange="refreshTHelp()">
+									<option value="" disabled selected>Select</option>
+									<option value="seconds">Seconds</option>
+									<option value="minutes">Minutes</option>
+									<option value="hours">Hours</option>
+									<option value="days">Days</option>
+									<option value="weeks">Weeks</option>
+									<option value="months">Months</option>
+									<option value="quarters">Quarters</option>
+									<option value="years">Years</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-title" style="background-color:#F1F1F1 !important; padding:5px 2px 5px 10px;font-size:14px; color:#4B4B4B;font-weight:bold;">
+						Throughput
+					</div>
+					<div class="card-content" style="padding: 10px 10px 5px 20px">
+						<div class="row" style="margin-bottom:5px;">
+							<div class="col s12 m12">
+								<div class="row" style="margin-bottom:5px;">
+									<span class="tt_unit_val">0</span>&nbsp;unit(s) exit every&nbsp;<span class="tt_time">0</span>&nbsp;<span class="tt_time_typ"></span>
+									<br/>
+									<span class="tt_unit_val">0</span>/<span class="tt_time">0</span> = <span id="tp_result">0</span> <span id="tp_time_typ"></span>
+								</div>
+								<div class="row" style="margin-bottom:0px;">
+									<input type="button" value="Use Throughput" id="btn_Thruput" onclick="thruputClicked(false)" class="btn waves-effect waves-light" style="background-color:#029755;width:97%;font-weight:bold;">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-title" style="background-color:#F1F1F1 !important; padding:5px 2px 5px 10px;font-size:14px; color:#4B4B4B;font-weight:bold; ">
+						Takt Time
+					</div>
+					<div class="card-content" style="padding: 10px 10px 5px 20px">
+						<div class="row" style="margin-bottom:5px;">
+							<div class="col s12 m12">
+								<div class="row" style="margin-bottom:5px;">
+									Every&nbsp;<span class="tt_time">0</span>&nbsp;<span class="tt_time_typ"></span>&nbsp;<span class="tt_unit_val">0</span>&nbsp;unit(s) exit
+									<br/>
+									<span class="tt_time">0</span>/<span class="tt_unit_val">0</span> = single unit every <span id="tt_result">0</span>&nbsp;<span class="tt_time_typ"></span>
+								</div>
+
+								<div class="row clearCalcButton" style="margin-bottom:0px;">
+									<input type="button" value="Use Takt Time" id="btn_Takt" onclick="taktClicked(false)" class="btn waves-effect waves-light" style="background-color:#ffa500;width:97%; font-weight:bold;">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<script>
+			openUserInfoDB( () => {
+				setPrecision();
+			});
+		</script>
+	</div>

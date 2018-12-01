@@ -1,0 +1,126 @@
+<div id="bar_chart_sel">
+  <div id="bar_chart_choice">
+    <div class="card">
+      <div class="card-title" style="background-color:#F1F1F1 !important; padding:5px 2px 5px 10px;font-size:14px;font-weight:bold; color:#4B4B4B;">
+        Choose chart to load or create a new chart:
+      </div>
+      <div id="bar_saved_charts">
+      </div>
+      <div class="card-content" style="padding: 10px 20px 5px 20px">
+        <div class="row" style="margin-bottom:0">
+          <div class="col s12 m12 mouse_point waves-effect waves-light btn calculatorButton" style="background:#0EABDA;" onclick="helpBarSwitch();">New BarChart</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div id="barchart_help_start" class="hidden_toggle col s12" style="padding:0; background=white;">
+<div class="card">
+  <span>To Get Started:<p>
+  Create a name for your chart. Define the number of gates for your process machine. Establish the expected requirement that will apply to each gate.<p>
+  For each gate, you will be prompted to provide a name for the gate. Enter the remaining days, actual days and last average number of days for each gate.<p>
+  Continue until all gate information has been entered. Then create the chart.<p></span>
+  <div class="col s12 m12 mouse_point waves-effect waves-light btn calculatorButton" style="background:#0EABDA;" onclick="defineBarChart();">New BarChart</div>
+</div>
+</div>
+  <div id="bar_chart_define" class="hidden_toggle col s12" style="padding:0;">
+    <div class="card">
+      <div class="card-content" style="padding: 10px 20px 5px 20px">
+        <div id="chart_properties">
+
+          <form>
+
+            <fieldset>
+              <div class="chart_name_group">
+                <label for="barchart_name"> Chart Name: </label>
+                <input type="text"id="barchart_name_id" name="barchart_name" />
+              </div>
+              <div class="chart_gates_group">
+                <label for="num_gates"> # of Gates: </label>
+                <input id="barchart_num_gates_id" name="num_gates"/>
+              </div>
+              <div class="chart_req_group">
+                <label for="barchart_num_reqs"> # of Requirements: </label>
+                <input id="barchart_num_req_id" name="barchart_num_reqs"/>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        <div class="row" style="margin-bottom:0">
+          <div id="barchart_save_chart_properties_btn" class="col s12 m12 mouse_point waves-effect waves-light btn calculatorButton" disabled="disabled" style="background:#0EABDA;" onclick="barGateValues();">Next</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="barchart_gate_values" class="hidden_toggle col s12" style="padding:0;">
+    <div class="card">
+      <div class="card-content" style="padding: 10px 20px 5px 20px">
+        <div id="form">
+
+          <form action="" method="post" name="barchart_properties" class="barchart_form">
+
+            <fieldset>
+              <div class="barchart_gate_title_group">
+                <label for="barchart_gate_title"> Gate Title: </label>
+                <input id="barchart_gate_title_id" name="barchart_gate_title" />
+              </div>
+              <div class="barchart_gate_remaining_days_group">
+                <label for="barchart_gate_remaining_days"> Remaining Days: </label>
+                <input id="barchart_gate_remaining_id" name="barchart_gate_remaining_days" />
+              </div>
+              <div class="barchart_gate_actual_days_group">
+                <label for="barchart_gate_actual_days"> Actual Days: </label>
+                <input id="barchart_gate_actual_id" name="barchart_gate_actual_days" />
+              </div>
+              <div class="barchart_gate_last_avg_group">
+                <label for="barchart_gate_avg_days"> Last Avg Days: </label>
+                <input id="barchart_gate_avg_days_id" name="barchart_gate_avg_days" />
+              </div>
+              <div id="buttonContainer">
+                <div id="barchart_prev_gate_btn" class="col s6 m6 mouse_point waves-effect waves-light btn" disabled="disabled" style="background:#0EABDA; display:inline-block;" onclick="">Back</div>
+                <div id="barchart_next_gate_btn" class="col s6 m6 mouse_point waves-effect waves-light btn" disabled="disabled" style="background:#0EABDA; float:right; display:inline-block;" onclick="addBarChartGate();">Next</div>
+                <div id="barchart_create_chart_btn" class="col s6 m6 mouse_point waves-effect waves-light btn" style="background:#0EABDA; float:right; display:none;" onclick="showBarChart();">Create Chart</div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="barchart_gate_chart" class="hidden_toggle col s12" style="padding:0;">
+	<div id="barchart_loading" style="visibility: visible">
+		<p id="barchart_status_msg" class="hidden_toggle" style="float: auto;color:Black; font-size:30px">Gathering your
+			Data...</p>
+	</div>
+	<div id="barchart_container" style="visibility: hidden; overflow-x: auto;">
+		<table style="width:100%;text-align:center">
+			<tr>
+				<td style="width:15%;"></td>
+				<td style="width:85%;">
+					<div id="barchart_containerChart" style="margin-bottom:-20px;z-index:1;"></div>
+				</td>
+			</tr>
+			<tr id="barchart_containerData" style="visibility: hidden">
+				<td colspan="2">
+					<table id="barchart_legendTable" width="99%"
+						style="border-collapse: collapse; z-index:500;">
+					</table>
+			</td>
+			</tr>
+		</table>
+    <div class="col s10">
+      <div class="col s2">
+        <input type="button" class="mouse_point waves-effect waves-light btn calculatorButton" value="Go Back" onclick="returnToBarChartList();"style="float: right;">
+      </div>
+    </div>
+	</div>
+ </div>
+
+<script>
+   createBarChartsListEventListener();
+   buildExampleBarChart();
+   getAllBarChartObjects();
+ </script>

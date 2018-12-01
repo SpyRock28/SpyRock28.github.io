@@ -1,0 +1,148 @@
+<div id="table_chart_sel">
+  <div id="table_chart_choice">
+    <div class="card">
+      <div class="card-title" style="background-color:#F1F1F1 !important; padding:5px 2px 5px 10px;font-size:14px;font-weight:bold; color:#4B4B4B;">
+        Choose chart to load or create a new chart:
+      </div>
+      <div id="saved_table_charts">
+      </div>
+      <div class="card-content" style="padding: 10px 20px 5px 20px">
+        <div class="row" style="margin-bottom:0">
+          <div class="col s12 m12 mouse_point waves-effect waves-light btn calculatorButton" style="background:#0EABDA;" onclick="helpTableSwitch();">New Table Chart</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tablechart_help_start" class="hidden_toggle col s12" style="padding:0; background=white;">
+  <div class="card">
+    <span>To Get Started:<p></span>
+      <span>
+    Create a name for your chart. Define the available days for your project and the required output to complete that number of days.<p>
+    Establish either the WIP goal or the Flowdays goal. Entering one will calculate the other. <p>
+    Determine the number of gates. For each gate, you will be prompted to provide a name for the gate and either the WIP or Flowdays. Entering one will calculate the other.<p>
+    Continue until all gate information has been entered. Then create the chart.<p></span>
+    <div class="col s12 m12 mouse_point waves-effect waves-light btn calculatorButton" style="background:#0EABDA;" onclick="defineTableChart();">New Table Chart</div>
+  </div>
+  </div>
+
+  <div id="table_chart_define" class="hidden_toggle col s12" style="padding:0;">
+    <div class="card">
+      <div class="card-content" style="padding: 10px 20px 5px 20px">
+        <div id="table_chart_properties">
+
+          <form>
+
+            <fieldset>
+              <div class="table_chart_name_group">
+                <label for="tablechart_name"> Table Chart Name: </label>
+                <input type="text" id="tablechart_name_id" name="tablechart_name" />
+              </div>
+              <div class="table_chart_avail_days">
+                <label for="table_avail_days"> Available Days: </label>
+                <input id="table_avail_days_id" name="table_avail_days"/>
+              </div>
+              <div class="table_chart_req_output">
+                <label for="table_req_output"> Required Output: </label>
+                <input id="table_req_output_id" name="table_req_output"/>
+              </div>
+              <div class="table_chart_gates_group">
+                <label for="table_num_gates"> # of Gates: </label>
+                <input id="table_num_gates_id" name="table_num_gates"/>
+              </div>
+              <div class="table_chart_takt_group">
+                <label for="table_takt"> Takt: </label>
+                <input id="table_takt_id" name="table_takt" type="text" readonly />
+              </div>
+              <div class="table_chart_goal_group">
+                <div style="float:left;">
+                  <label for="table_goal"> Goal: </label>
+                </div>
+                <div style="float:left;">
+                  <label>
+                    <input id="table_wip_goal" name="chart_goal_group"/>
+                    <span style="float:left; position:relative; left:30px; text-align:center">WIP</span>
+                  </label>
+                </div>
+                <div style="float:left; position:relative; left:30px;">
+                  <label>
+                    <input id="table_flowdays_goal" name="chart_goal_group"/>
+                    <span style="float:left; position:relative; left:30px; text-align:center">FlowDays</span>
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        <div class="row" style="margin-bottom:0">
+          <div id="save_table_chart_properties_btn" class="col s12 m12 mouse_point waves-effect waves-light btn calculatorButton" disabled="disabled" style="background:#0EABDA;" onclick="tableGateValues();">Next</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="tablechart_gate_values" class="hidden_toggle col s12" style="padding:0;">
+    <div class="card">
+      <div class="card-content" style="padding: 10px 20px 5px 20px">
+        <div id="form">
+
+          <form action="" method="post" name="tablechart_properties" class="barchart_form">
+
+            <fieldset>
+              <div class="table_gate_title_group">
+                <label for="table_gate_title">Gate Title: </label>
+                <input id="table_gate_title_id" name="table_gate_title" />
+              </div>
+              <div class="table_gate_goal_group">
+                <div style="float:left;">
+                  <label>
+                    <input id="gate_wip_goal" name="table_gate_goal_group"/>
+                    <span style="float:left; position:relative; left:30px; text-align:center">WIP</span>
+                  </label>
+                </div>
+                <div style="float:left; position:relative; left:30px;">
+                  <label>
+                    <input id="gate_flowdays_goal" name="table_gate_goal_group"/>
+                    <span style="float:left; position:relative; left:30px; text-align:center">FlowDays</span>
+                  </label>
+                </div>
+              </div>
+              <div id="buttonContainer">
+                <div id="tablechart_prev_gate_btn" class="col s6 m6 mouse_point waves-effect waves-light btn" disabled="disabled" style="background:#0EABDA; display:inline-block;" onclick="">Back</div>
+                <div id="tablechart_next_gate_btn" class="col s6 m6 mouse_point waves-effect waves-light btn" disabled="disabled" style="background:#0EABDA; float:right; display:inline-block;" onclick="addTableChartGate();">Next</div>
+                <div id="tablechart_create_chart_btn" class="col s6 m6 mouse_point waves-effect waves-light btn" style="background:#0EABDA; float:right; display:none;" onclick="showTableChart();">Create Chart</div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="gate_chart" class="hidden_toggle col s12" style="padding:0; overflow-x: auto;">
+    <div id="wipTable">
+      <table style="background-color:LightGoldenRodYellow ;width: 100%; border:2px solid black;">
+        <caption align="top" id="table_chart_title">Title</caption>
+        <tr>
+          <td/>
+          <td colspan="3">
+            <table id="wipTableDetail" style="width: 100%;text-align:center;border:1px light gray;border-collapse: collapse;">
+            </table>
+          </td>
+          <td/>
+        </tr>
+      </table>
+    </div>
+    <div class="col s10">
+      <div class="col s2">
+        <input type="button" class="mouse_point waves-effect waves-light btn calculatorButton" value="Go Back" onclick="returnToTableChartList();"style="float: right;">
+      </div>
+    </div>
+  </div>
+
+  <script>
+     createTableChartsListEventListener();
+     buildExampleTableChart();
+     getAllTableChartObjects();
+   </script>

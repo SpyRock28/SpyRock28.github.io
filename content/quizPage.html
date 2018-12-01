@@ -1,0 +1,81 @@
+<div class="container" style="width:95%;">
+  <div class="card-panel">
+    <div id="quizInfo" style="padding-bottom:5px;">
+      <div class="row">
+        <div class="col s9">
+          <h5 id="quizTopic" style="margin:0px;"></h5>
+        </div>
+        <div class="col s3">
+          <p id="questionNumber" style="margin:0px;"></p>
+        </div>
+      </div>
+
+      <div id="scoreInfo">
+      
+          <h1  id="scoreBanner" class="ribbon" style="display: none;">
+            <div class="ribbon-content" >SCORE</div>
+          </h1>   
+            <div id="currentScore" style="display: none;"> </div>
+      </div>
+    </div>
+
+    <div id="finishQuiz" style="display: none;">
+      <div class="row">
+        <div class="col s6 m6 l6">
+          <input type="button" value="Close Quiz" id="closeQuizButton" class="modal-close waves-effect btn waves-light"  style="width:100%;font-weight:bold;">
+
+        </div>
+        <div class="col s6 m6 l6">
+          <input type="button" value="Retake Quiz" id="retakeQuizButton" class="waves-effect btn waves-light"  style="width:100%;font-weight:bold;">
+        </div>
+      </div>
+    </div>
+
+    <div id="quizContainer">
+      <h5 id="quizQuestion" style="text-align:center;color:#3F4152"></h5>
+      
+      <div id="justificationContainer" >
+       <img id="justificationIcon" class="answerIcon">
+       <div id="justificationBox" >
+        <p id="fullJustification"></p>
+      </div>
+    </div>
+
+    <form id="answerForm">
+    </form>
+
+    <div class="row">
+      <div class="col s6 m6 l6">
+        <input type="button" value="Check" id="submitQuestionButton" class="btn waves-effect waves-light" style="width:100%;font-weight:bold;">
+      </div>
+
+      <div class="col s6 m6 l6">
+       <input type="button" value="Next" id="nextButton" class="btn waves-effect waves-light" style="width:100%;font-weight:bold;">
+     </div>
+   </div>
+
+ </div>
+ <div id="closeQuiz">
+ </br>
+</br>
+
+
+
+</div>
+
+
+
+<div >
+ <a href="javascript: saveAndCloseQuiz();" id="closeQuizButton" class="quizQuit" >
+  SAVE & QUIT
+</a>
+</div>
+
+</div>
+
+
+
+</div>
+<script>
+  readQuestions(currentQuiz);
+</script>

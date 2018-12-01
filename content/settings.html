@@ -1,0 +1,97 @@
+<div class="container">
+	<script src="js/settings.js"></script>
+	<div style="padding:5px; " class="card-panel hoverable">
+		<div class="row">
+			<form class="col s12">
+				<div class="row" style="padding:0 10px;">
+					<div class="input-field col s12">
+						<i class="prefix" style="text-align:right; padding-right:10px;">
+							<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+							 y="0px" height="24px" width="24px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+								<g>
+									<g>
+										<path d="M256,0C114.844,0,0,114.844,0,256s114.844,256,256,256s256-114.844,256-256S397.156,0,256,0z M256,74.667
+									c67.635,0,122.667,55.031,122.667,122.667S323.635,320,256,320s-122.667-55.031-122.667-122.667S188.365,74.667,256,74.667z
+									M256,469.333c-69.707,0-131.52-33.755-170.473-85.615c42.676-20.534,103.621-42.385,170.473-42.385
+									c66.857,0,127.807,21.854,170.474,42.383C387.521,435.577,325.708,469.333,256,469.333z" />
+									</g>
+								</g>
+							</svg>
+						</i>
+						<input id="name" type="text" class="validate">
+						<label for="name">Name</label>
+					</div>
+				</div>
+
+				<div class="row" style="padding:0 10px;">
+					<div class="input-field col s12">
+						<i class="prefix" style="text-align:right; padding-right:10px;">
+							<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+								<path fill="none" d="M0 0h24v24H0z" />
+								<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z" />
+							</svg>
+
+						</i>
+						<input id="email_primary" type="email" class="validate">
+						<label for="email_primary">Primary Email</label>
+					</div>
+				</div>
+
+				<div class="row" style="padding:0 10px;">
+					<div class="input-field col s12">
+						<i class="prefix" style="text-align:right; padding-right:10px;">
+							<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+								<path fill="none" d="M0 0h24v24H0z" />
+								<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z" />
+							</svg>
+						</i>
+						<input id="email_secondary" type="email" class="validate">
+						<label for="email_secondary">Secondary Email</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s12" style="padding:0 10px;"><label for="precisionRadioSet" style="font-size:20px;padding-left:10px;color:#000;">Decimal
+							Precision</label></div>
+				</div>
+
+				<div class="row">
+					<div class="col s12" id="precisionRadioSet">
+						<div class="precisionRadio" style="padding:0 10px;">
+							<input class="with-gap" name="group1" type="radio" value="precision0" id="precision0" />
+							<label for="precision0">0</label>
+						</div>
+						<div class="precisionRadio">
+							<input class="with-gap" name="group1" type="radio" value="precision1" id="precision1" />
+							<label for="precision1">1</label>
+						</div>
+						<div class="precisionRadio">
+							<input class="with-gap" name="group1" type="radio" value="precision2" id="precision2" />
+							<label for="precision2">2</label>
+						</div>
+						<div class="precisionRadio">
+							<input class="with-gap" name="group1" type="radio" value="precision3" id="precision3" checked />
+							<label for="precision3">3</label>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="row">
+					<div>
+						<p style="margin-left: 22px;"><span style="color: orange">Note:</span> Email functionality requires email client
+							setup on this device.</p>
+						<p style="margin-left: 22px;"><span style="color: orange">Note:</span> Email functionality may not work if popups
+							are blocked.</p>
+					</div>
+					<div class="col s12" style="text-align:right;">
+						<a href="javascript:createOrUpdate();" class="waves-effect waves-light btn" style="margin:20px 5px 5px 0; background-color:#0eabda;font-weight:bold;">Save</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script>
+		openUserInfoDBset();
+	</script>
+</div>

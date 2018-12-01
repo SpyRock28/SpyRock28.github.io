@@ -1,0 +1,76 @@
+<div id="sliderScreen" class="slider fullscreen container" data-interval="false" 
+style="overflow-x: hidden;overflow-y: hidden;"
+ondblclick="javascript:(loadLandscapeModal())" 
+onload="javascript:(loadLandscapeSlide())">
+<ul id="numberList" class="slides" >
+</ul>
+
+<div id="leftArrow" class="left">
+  <a href="#" class="movePrevCarousel middle-indicator-text waves-effect waves-light content-indicator" onclick="clickPrevSlide()" style="height:100%;">
+    <img src="css/svg/chevron-left.svg" class="leftArrowImg"></a>
+  </div>
+
+  <div id="rightArrow" class="right rightPadding" >   
+    <a href="#" class="moveNextCarousel middle-indicator-text waves-effect waves-light content-indicator" onclick="clickNextSlide()" style="height:100%;">
+      <img src="css/svg/chevron-right.svg" class="rightArrowImg">
+    </a>
+  </div>
+  
+</div> 
+<script>
+
+  $(document).ready(function() {
+    console.log(orientation);
+    if(orientation === 90 && $("#pageTitle").text()==="AOP Slides" )
+    {
+      landscapeStyle();
+    }
+    $(window).on('orientationchange', function(event) {
+      console.log("script running");
+      if(orientation === 90 && $("#pageTitle").text()==="AOP Slides" )
+      {
+       landscapeStyle();
+     }
+     else{
+      portraitStyle();
+    }
+  });
+
+    function portraitStyle()
+    {
+      $("#mobileFooter").css('display', 'unset');
+      $("#sliderScreen").css('margin-top', '0px');
+      $(".footerIcons").css('display', 'unset');
+      $(".page-footer").css('display', 'unset');
+      $("nav").css('height', '56px');
+      $("nav").css('transition', 'none');
+      $(".imageStyle").css('background-size', 'contain');
+      $(".myProgress").css('bottom', '65px');
+      $('nav').hover(function() {
+        $(this).stop().css('height','56px')
+      })
+    }
+
+    function landscapeStyle()
+    {
+     $("#mobileFooter").css('display', 'none !important');
+     $("#sliderScreen").css('margin-top', '10px');
+     $(".imageStyle").css('background-size', 'auto 100%');
+     $(".myProgress").css('bottom', '5px');
+
+     $(".footerIcons").css('display', 'none');
+     $(".page-footer").css('display', 'none');
+     $('nav').css('height', '10px');
+     $('nav').css('transition', 'height .5s');
+     $("nav:hover").css('height', '56px');
+     $('nav').hover(function() {
+      $(this).css('height','56px')
+    }, function(){
+      $(this).stop().css('height','10px')
+    })
+   }
+
+ });
+
+</script>
+

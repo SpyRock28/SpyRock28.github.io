@@ -1,0 +1,132 @@
+<div class="container">
+<div class="row" style="padding:0 !important;">
+	<div class="col s12" style="padding:0 !important;">
+		<ul class="tabs" style="line-height:0 !important;">
+			<li class="tab col s3" style="line-height:0 !important;"><a id="calcLink" href="#calculations" class="active" style="padding-top:3px" onclick="setCalcColor()">
+				<table>
+					<tr><td class="iconTab"><svg id="calculationsTabIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" style="padding-top:2px;">
+					<path id="calcsvg" class="calculatorIcon" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-17 5c0-1.654 1.346-3 3-3h6v9h-9v-6zm0 14v-6h9v9h-6c-1.654 0-3-1.346-3-3zm20 0c0 1.654-1.346 3-3 3h-6v-9h9v6zm0-8h-9v-9h6c1.654 0 3 1.346 3 3v6zm-2 6h-5v-1h5v1zm-5-11h5v1h-5v-1zm0 13v-1h5v1h-5zm-6-2v1h-2v2h-1v-2h-2v-1h2v-2h1v2h2zm-1.793-10.5l1.414 1.414-.707.707-1.414-1.414-1.414 1.414-.708-.707 1.414-1.414-1.414-1.414.707-.707 1.415 1.414 1.415-1.415.708.708-1.416 1.414zm9.793-2c0-.276.224-.5.5-.5s.5.224.5.5-.224.5-.5.5-.5-.224-.5-.5zm1 4c0 .276-.224.5-.5.5s-.5-.224-.5-.5.224-.5.5-.5.5.224.5.5z" fill="#FFFFFF"
+					/></svg></td></tr>
+					<tr><td class="iconTabText">Calculations</td></tr>
+				</table>
+			</a></li>
+			<li class="tab col s3" style="line-height:0 !important;"><a id="searchesLink" href="#searches" style="padding-top:3px" onclick="setSearchColor()" >
+			<table>
+					<tr><td class="iconTab">
+						<svg version="1.1" id="searchTabIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+						width="20" height="20"			x="0px" y="0px"
+						viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve">
+						<path class="searchIcon" d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23
+						s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92
+						c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17
+						s-17-7.626-17-17S14.61,6,23.984,6z" fill="#424242"/>
+						</svg>
+					</td></tr>
+					<tr><td class="iconTabText">Searches</td></tr>
+				</table>
+			</a></li>
+			<li class="tab col s3"style="line-height:0 !important;"><a id="activityLink" href="#activityStatus" style="padding-top:3px" onclick="setActivityColor()">
+			<table>
+					<tr><td class="iconTab">
+						<svg version="1.1" id="activityTabIcon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+						width="20" height="20" viewBox="0 0 306 306" style="enable-background:new 0 0 306 306;" xml:space="preserve">
+						<g>
+						<g id="star-rate">
+						<polygon class="activityIcon" points="153,230.775 247.35,299.625 211.65,187.425 306,121.125 191.25,121.125 153,6.375 114.75,121.125 0,121.125
+						94.35,187.425 58.65,299.625 " fill="#424242"/>
+						</g>
+						</g>
+						</svg>
+					</td></tr>
+					<tr><td class="iconTabText">Scores</td></tr>
+				</table>
+			</a></li>
+		</ul>
+	</div>
+
+	<div id="calculations" class="col s12">
+		<div id="calculationsBlurb" class="col s12" style="display:block">
+			<p>Shows you all of your saved calculations from the LL Calculator, for easy recall.</p>
+			<p>Click the Save button after a calculation and provide a name for the calculation.</p>
+			<p>Add a group name to group related calculations.</p>
+		</div>
+		<div id="savedCalculations" class="col s12"></div>
+	</div>
+
+
+	<div id="searches" class="col s12">
+		<div id="searchesBlurb" class="col s12" style="display:block">
+			Your saved search terms will be displayed here.
+		</div>
+		<div id="savedSearches" class="col s12"></div>
+	</div>
+
+	<div id="activityStatus" class="col s12">
+		<div id="activityBlurb" class="col s12" style="display:block">
+			As you complete activities and quizes your results will be displayed here.
+		</div>
+		<div id="savedScores" class="col s12"></div>
+	</div>
+
+</div>
+
+
+
+
+</div>
+
+<script type="text/javascript">
+openSearchDB();
+openUserInfoDB();
+openScoresDB();
+	$(document).ready(function(){
+		$('.tabs').tabs();
+		$('.collapsible').collapsible();
+		notesFetchAllCalcGroups();
+		createCalcResultsEventListener();
+	});
+
+
+
+	function setCalcColor()
+	{
+		$(".calculatorIcon").css("fill", "#FFFFFF");
+		$(".searchIcon").css("fill", "#424242");
+		$(".activityIcon").css("fill", "#424242");
+	}
+
+	function setSearchColor()
+	{
+		$(".searchIcon").css("fill", "#FFFFFF");
+		$(".calculatorIcon").css("fill", "#424242");
+		$(".activityIcon").css("fill", "#424242");
+
+		displaySearchesInBinder();
+	}
+
+	function setActivityColor()
+	{
+		 $(".activityIcon").css("fill", "#FFFFFF");
+		 $(".searchIcon").css("fill", "#424242");
+		 $(".calculatorIcon").css("fill", "#424242");
+
+		 displayScoresInBinder();
+	}
+
+
+	function checkIconColor(){
+	var calcTab = document.getElementById("calcLink");
+	var searchTab = document.getElementById("searchesLink");
+	var activityTab = document.getElementById("activityLink");
+
+	if(calcTab.className === "active"){
+		alert("calc active");
+	}
+	else if(searchTab.className === "active"){
+		alert("searchTab active");
+	}
+	else if(activityTab.className === "active"){
+		alert("activityTab active");
+	}
+	}
+</script>
