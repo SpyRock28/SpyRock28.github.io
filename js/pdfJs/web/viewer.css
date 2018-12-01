@@ -1363,7 +1363,6 @@ html[dir="rtl"] #viewOutline.toolbarButton::before {
 
 #closeButton.toolbarButton::before {
   content: url(images/findbarButton-previous.png);
-  border: 1px yellow solid;
 }
 
 .toolbarButton.pdfSidebarNotification::after {
