@@ -28,13 +28,13 @@ closeButton.addEventListener("click", () => {
       }
     };
     var funcGestureEnd = function (e) {
-      if (e.scale < 1.0) {
-        // User moved fingers closer together
-        document.getElementById('zoomOut').click()
-      } else if (e.scale > 1.0) {
-        // User moved fingers further apart
-        document.getElementById('zoomIn').click()
-      }
+//       if (e.scale < 1.0) {
+//         // User moved fingers closer together
+//         document.getElementById('zoomOut').click()
+//       } else if (e.scale > 1.0) {
+//         // User moved fingers further apart
+//         document.getElementById('zoomIn').click()
+//       }
     };
      
     // iOS
